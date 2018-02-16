@@ -3,6 +3,6 @@
 
 int main()
 {
-	ft_printf(NULL);
+	ft_printf("saluth%ehe");
 	return 0;
 }

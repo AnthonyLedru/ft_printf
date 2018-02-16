@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/02/16 18:39:41 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/02/16 20:12:44 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ HEADER_PRINTED := NO
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@make -C libft/
+	@make -C libft/ -s
 	@cp libft/libft.a ./$(NAME)
-	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
+	@printf "\n$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@ar rcs $(NAME) $(OBJECTS)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
