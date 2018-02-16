@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/02/16 20:12:44 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/02/16 21:05:24 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ FLAGS := -Wall -Wextra -Werror
 
 SOURCES := \
 		ft_printf.c \
+		error.c \
+		env.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 

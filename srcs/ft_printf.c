@@ -6,30 +6,41 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:46:07 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/16 20:13:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/16 22:06:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_until_percent(char *string)
+void	print_until_percent(t_env *e)
 {
-	while (*string && *string != '%')
+	while (e->str[e->i] && e->str[e->i] != '%')
 	{
-		ft_putchar(*string);
-		string++;
+		ft_putchar(e->str[e->i]);
+		e->i++;
 	}
 }
 
 int		ft_printf(const char *str, ...)
 {
-	char	*string;
 	va_list arg;
+	t_env	*e;
 
-	string = (char*)str;
+	e = create_env((char*)str);
 	va_start(arg, str);
 	//char *s = va_arg(arg, char *);
-	print_until_percent(string);
+	while (e->str[e->i])
+	{
+		print_until_percent(e);
+		if (!e->str[e->i])
+			return (e->i);
+		e->i++;
+		if (!e->str[e->i])
+			return (e->i);
+		if (e->str[e->i] == '%')
+			ft_putchar('%');
+		e->i++;
+	}
 	va_end(arg);
-	return (0);
+	return (e->i);
 }
