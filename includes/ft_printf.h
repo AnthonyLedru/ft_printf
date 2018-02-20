@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/16 21:47:00 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/20 11:48:32 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_env
 {
 	char	*str;
 	int		i;
+	int		count;
 }				t_env;
 
 /*
@@ -48,5 +49,33 @@ t_env	*create_env(char *str);
 */
 
 void	malloc_error(void);
+void	arg_error(void);
+
+/*
+** ---------------------------------- Put --------------------------------------
+*/
+
+void	ft_putchar_count(char c, t_env *e);
+void	ft_putstr_count(char *str, t_env *e);
+void	ft_putnbr_count(int nbr, t_env *e);
+void	ft_putoffset_count(int offset, t_env *e);
+
+/*
+** -------------------------- Conversion Selector ------------------------------
+*/
+
+void	check_conversion(t_env *e, va_list arg);
+
+/*
+** -------------------------- String Conversion --------------------------------
+*/
+
+void	string_conversion(t_env *e, va_list arg);
+
+/*
+** -------------------------- Number Conversion --------------------------------
+*/
+
+void	double_conversion(t_env *e, va_list arg);
 
 #endif

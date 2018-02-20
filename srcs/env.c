@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/16 21:13:21 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/20 10:07:52 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ t_env	*create_env(char *str)
 		malloc_error();
 	e->str = str;
 	e->i = 0;
+	e->count = 0;
 	return (e);
 }

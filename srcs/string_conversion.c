@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   string_conversion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:03:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 10:20:05 by aledru           ###   ########.fr       */
+/*   Created: 2018/02/20 10:02:46 by aledru            #+#    #+#             */
+/*   Updated: 2018/02/20 11:47:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	malloc_error(void)
+void	string_conversion(t_env *e, va_list arg)
 {
-	ft_putstr_fd("error: Malloc failed\n", 2);
-	exit(EXIT_FAILURE);
-}
+	char *next_arg;
 
-void	arg_error(void)
-{
-	ft_putstr_fd("error: Args are invalids\n", 2);
-	exit(EXIT_FAILURE);
+	next_arg = va_arg(arg, char *);
+	if (!next_arg)
+		arg_error();
+	ft_putstr_count(next_arg, e);
 }

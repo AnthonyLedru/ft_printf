@@ -24,6 +24,10 @@ SOURCES := \
 		ft_printf.c \
 		error.c \
 		env.c \
+		put.c \
+		conversion_selector.c \
+		string_conversion.c \
+		number_conversion.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 
@@ -71,5 +75,15 @@ fclean:
 	@printf "$(SILENT_COLOR)ft_printf : Binary removed $(NO_COLOR)\n"
 
 re: fclean all
+
+exec: printf
+
+printf: $(OBJECTS)
+	@make -C libft/ -s
+	@printf "\n$(SILENT_COLOR)Compiling binary...$(NO_COLOR)"
+	@$(CC) -w libft/libft.a $(SOURCES) main.c $(INCLUDE_FOLDERS)
+	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
+
+
 
 .PHONY: all clean fclean re header
