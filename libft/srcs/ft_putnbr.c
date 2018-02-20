@@ -6,7 +6,7 @@
 /*   By: aledru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 07:43:37 by aledru            #+#    #+#             */
-/*   Updated: 2017/11/09 23:41:09 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/20 15:41:31 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_putnbr(int n)
 {
+	unsigned int	nb;
+
+	nb = (unsigned int)n;
 	if (n == -2147483648)
 	{
 		ft_putstr("-2147483648");
@@ -30,6 +33,6 @@ void	ft_putnbr(int n)
 		ft_putchar(n + '0');
 		return ;
 	}
-	ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	ft_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }

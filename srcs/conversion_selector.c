@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:49:55 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 14:03:18 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/20 15:06:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		get_offset(int init_index, t_env *e)
 void	check_conversion(t_env *e, va_list arg)
 {
 	int offset;
+
 	fill_space(e);
 	offset = get_offset(e->i, e);
 	if (offset > 0)
@@ -57,6 +58,8 @@ void	check_conversion(t_env *e, va_list arg)
 		string_conversion(e, arg);
 	if (e->str[e->i] == 'd')
 		double_conversion(e, arg);
+	if (e->str[e->i] == 'X')
+		hexa_conversion(e, arg);
 	if (offset < 0)
 		ft_putoffset_count(offset, e);
 }

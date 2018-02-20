@@ -4,9 +4,9 @@
 int main()
 {
 	//ft_printf("%1d", 100);
-	ft_printf("%    s", "test");
+	ft_printf("%X", -42);
 	printf("\n");
-	printf("%     s", "test");
+	printf("%X", -42);
 	//printf("%%");
 	//printf("%s%x", "ttt", 100);
 	return (0);

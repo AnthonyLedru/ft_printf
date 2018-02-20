@@ -87,6 +87,7 @@ SOURCES := \
 		ft_atoi.c \
 		ft_itoa.c \
 		ft_abs.c \
+		ft_itoa_base.c \
 
 
 OBJECTS := $(SOURCES:.c=.o)

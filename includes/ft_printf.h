@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 11:48:32 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/20 14:20:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	string_conversion(t_env *e, va_list arg);
 */
 
 void	double_conversion(t_env *e, va_list arg);
+void	hexa_conversion(t_env *e, va_list arg);
 
 #endif
