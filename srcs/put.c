@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 13:00:42 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/21 19:39:04 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,30 @@ void	ft_putnbr_count(int nbr, t_env *e)
 	ft_putnbr(nbr);
 }
 
-void	ft_putoffset_count(int offset, t_env *e)
+void	ft_putoffset_precision_count(t_env *e, int arg_size)
 {
 	int i;
 
 	i = 0;
-	if (offset < 0)
-		offset *= -1;
-	offset--;
-	while (i < offset)
+	if (e->offset < 0)
+		e->offset *= -1;
+	if (e->precision > arg_size && e->offset > e->precision)
+		e->offset -= e->precision;
+	else
+		e->offset -= arg_size;
+	while (i < e->offset)
 	{
 		ft_putchar_count(' ', e);
 		i++;
 	}
+	if (e->precision > arg_size)
+	{
+		i = 0;
+		while (i < e->precision - arg_size)
+		{
+			ft_putchar_count('0', e);
+			i++;
+		}
+	}
+	e->offset = 0;
 }

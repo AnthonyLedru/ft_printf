@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_selector.c                                    :+:      :+:    :+:   */
+/*   conversion_selector.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 09:49:55 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 15:06:06 by aledru           ###   ########.fr       */
+/*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
+/*   Updated: 2018/02/21 18:47:07 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,77 @@ void	fill_space(t_env *e)
 		e->i++;
 }
 
-int		get_offset(int init_index, t_env *e)
+void	put_percent(t_env *e)
 {
-	char	*num;
-	int		i;
-	int max;
-
-	i = 0;
-	if (e->str[e->i] == '-')
-		e->i++;
-	while (ft_isdigit(e->str[e->i]))
-		e->i++;
-	if (!(num = ft_memalloc(sizeof(char) * e->i - init_index + 1)))
-		malloc_error();
-	max = e->i;
-	e->i = e->i - (e->i - init_index);
-	while (e->i < max)
-	{
-		num[i] = e->str[e->i];
-		e->i++;
-		i++;
-	}
-	num[i] = '\0';
-	return (ft_atoi(num));
+	if (e->offset > 0)
+		ft_putoffset_precision_count(e, 1);
+	ft_putchar_count('%', e);
+	if (e->offset < 0)
+		ft_putoffset_precision_count(e, 1);
 }
 
-void	check_conversion(t_env *e, va_list arg)
+void	select_conversion_long(t_env *e, va_list arg)
 {
-	int offset;
+	e->i++;
+	if (e->str[e->i] == 'l')
+	{
+		e->i++;
+		if (e->str[e->i] == 'X')
+			hexa_conversion(e, arg, 1, "ll");
+		if (e->str[e->i] == 'x')
+			hexa_conversion(e, arg, 0, "ll");
+	}
+	else
+	{
+		if (e->str[e->i] == 'X')
+			hexa_conversion(e, arg, 1, "ul");
+		if (e->str[e->i] == 'x')
+			hexa_conversion(e, arg, 0, "ul");
+	}
+}
 
-	fill_space(e);
-	offset = get_offset(e->i, e);
-	if (offset > 0)
-		ft_putoffset_count(offset, e);
-	fill_space(e);
+void	select_conversion_short(t_env *e, va_list arg)
+{
+	e->i++;
+	if (e->str[e->i] == 'h')
+	{
+		e->i++;
+		if (e->str[e->i] == 'X')
+			hexa_conversion(e, arg, 1, "hh");
+		if (e->str[e->i] == 'x')
+			hexa_conversion(e, arg, 0, "hh");
+	}
+	else
+	{
+		if (e->str[e->i] == 'X')
+			hexa_conversion(e, arg, 1, "uh");
+		if (e->str[e->i] == 'x')
+			hexa_conversion(e, arg, 0, "uh");
+	}
+}
+
+void	select_conversion(t_env *e, va_list arg)
+{
 	if (e->str[e->i] == '%')
-		ft_putchar_count('%', e);
+		put_percent(e);
 	if (e->str[e->i] == 's')
 		string_conversion(e, arg);
 	if (e->str[e->i] == 'd')
 		double_conversion(e, arg);
 	if (e->str[e->i] == 'X')
-		hexa_conversion(e, arg);
-	if (offset < 0)
-		ft_putoffset_count(offset, e);
+		hexa_conversion(e, arg, 1, "ui");
+	if (e->str[e->i] == 'x')
+		hexa_conversion(e, arg, 0, "ui");
+	if (e->str[e->i] == 'l')
+		select_conversion_long(e, arg);
+	if (e->str[e->i] == 'h')
+		select_conversion_short(e, arg);
+	if (e->str[e->i] == 'j')
+	{
+		e->i++;
+		if (e->str[e->i] == 'X')
+			hexa_conversion(e, arg, 1, "uj");
+		if (e->str[e->i] == 'x')
+			hexa_conversion(e, arg, 0, "uj");
+	}
 }

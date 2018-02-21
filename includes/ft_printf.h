@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 14:20:09 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/21 18:46:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,32 @@
 ** --------------------------------- Struct ------------------------------------
 */
 
+typedef struct	s_type
+{
+	unsigned int	ui;
+	unsigned int	ui_cpy;
+	unsigned long	ul;
+	unsigned long	ul_cpy;
+	unsigned long long	ll;
+	unsigned long long	ll_cpy;
+	unsigned short int	uh;
+	unsigned short int	uh_cpy;
+	unsigned char	hh;
+	unsigned char	hh_cpy;
+	uintmax_t	uj;
+	uintmax_t	uj_cpy;
+
+
+}				t_type;
+
 typedef struct	s_env
 {
-	char	*str;
-	int		i;
-	int		count;
+	char			*str;
+	int				i;
+	int				count;
+	int				offset;
+	int				precision;
+	struct s_type	*type;
 }				t_env;
 
 /*
@@ -43,6 +64,9 @@ int		ft_printf(const char *str, ...);
 */
 
 t_env	*create_env(char *str);
+void	get_offset(int init_index, t_env *e);
+void	get_precision(int init_index, t_env *e);
+void	init_type_cpy(t_env *e);
 
 /*
 ** --------------------------------- Error -------------------------------------
@@ -58,13 +82,14 @@ void	arg_error(void);
 void	ft_putchar_count(char c, t_env *e);
 void	ft_putstr_count(char *str, t_env *e);
 void	ft_putnbr_count(int nbr, t_env *e);
-void	ft_putoffset_count(int offset, t_env *e);
+void	ft_putoffset_precision_count(t_env *e, int arg_size);
 
 /*
 ** -------------------------- Conversion Selector ------------------------------
 */
 
-void	check_conversion(t_env *e, va_list arg);
+void	select_conversion(t_env *e, va_list arg);
+void	fill_space(t_env *e);
 
 /*
 ** -------------------------- String Conversion --------------------------------
@@ -77,6 +102,13 @@ void	string_conversion(t_env *e, va_list arg);
 */
 
 void	double_conversion(t_env *e, va_list arg);
-void	hexa_conversion(t_env *e, va_list arg);
+void	hexa_conversion(t_env *e, va_list arg, int is_caps, char *type);
+int		get_nb_digit(t_env *e, char *type, int base);
+
+/*
+** --------------------------- Base Converter ----------------------------------
+*/
+
+char	*base_converter(t_env *e, int base, int is_caps, char *type);
 
 #endif

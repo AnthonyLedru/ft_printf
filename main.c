@@ -4,9 +4,11 @@
 int main()
 {
 	//ft_printf("%1d", 100);
-	ft_printf("%X", -42);
+	//printf("a %d\n", -30);
+	//printf("b %x\n", 4294967266);
+	ft_printf("%010x", 542);
 	printf("\n");
-	printf("%X", -42);
+	printf("%010x", 542);
 	//printf("%%");
 	//printf("%s%x", "ttt", 100);
 	return (0);

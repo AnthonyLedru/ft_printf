@@ -6,7 +6,7 @@
 /*   By: aledru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:40:02 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/20 14:19:05 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/21 10:20:21 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ int				ft_isspace(int c);
 int				ft_isxdigit(int c);
 int				ft_htoi(char *hex);
 int				ft_abs(int nb);
-char			*ft_itoa_base(int nbr, int base);
 #endif
