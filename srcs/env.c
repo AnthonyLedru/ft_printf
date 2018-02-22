@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 17:51:01 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 21:21:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	get_precision(int init_index, t_env *e)
 	}
 	num[i] = '\0';
 	e->precision = ft_atoi(num);
+	if (e->precision == 0)
+		e->is_precision_specified = 1;
 }
 
 void	init_type_cpy(t_env *e)

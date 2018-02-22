@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 19:36:55 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 21:17:01 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_env
 	int				count;
 	int				offset;
 	int				precision;
+	int				is_precision_specified;
 	struct s_type	*type;
 }				t_env;
 

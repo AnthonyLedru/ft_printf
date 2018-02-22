@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:02:46 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 21:07:27 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 21:29:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	string_conversion(t_env *e, va_list arg)
 	next_arg = va_arg(arg, char *);
 	if (!next_arg)
 		next_arg = "(null)";
+	if (e->is_precision_specified == 1)
+		next_arg = "";
 	arg_size = ft_strlen(next_arg);
 	if (e->precision < arg_size && e->precision != 0)
 		e->offset += e->offset > 0 ? arg_size - e->precision :
