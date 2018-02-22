@@ -6,17 +6,17 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:46:07 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/21 15:51:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 16:57:23 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_until_percent(t_env *e)
+void	put_to_buf_until_percent(t_env *e)
 {
 	while (e->str[e->i] && e->str[e->i] != '%')
 	{
-		ft_putchar_count(e->str[e->i], e);
+		put_char_to_buf(e->str[e->i], e);
 		e->i++;
 	}
 }
@@ -30,19 +30,14 @@ int		ft_printf(const char *str, ...)
 	e = create_env((char*)str);
 	while (e->str[e->i])
 	{
-		print_until_percent(e);
-		if (!e->str[e->i])
-			return (e->count);
+		put_to_buf_until_percent(e);
+		if (!e->str[e->i] || !e->str[e->i])
+			break ;
 		e->i++;
-		if (!e->str[e->i])
-			return (e->count);
-		fill_space(e);
-		get_offset(e->i, e);
-		get_precision(e->i, e);
-		fill_space(e);
-		select_conversion(e, arg);
+		parse_after_percent(e, arg);
 		e->i++;
 	}
+	ft_putstr(e->buf);
 	va_end(arg);
-	return (e->count);
+	return (ft_strlen(e->buf));
 }

@@ -3,13 +3,17 @@
 
 int main()
 {
-	//ft_printf("%1d", 100);
-	//printf("a %d\n", -30);
-	//printf("b %x\n", 4294967266);
-	ft_printf("%010x", 542);
-	printf("\n");
-	printf("%010x", 542);
-	//printf("%%");
-	//printf("%s%x", "ttt", 100);
+ft_printf("%5.0s is a string", "");
+ft_printf("\n");
+ft_printf("%5.4x", 10);
+ft_printf("\n");
+ft_printf("%5.0s is a string", "this");
+ft_printf("\n");
+printf("\n");
+printf("%5.0s is a string", "");
+printf("\n");
+printf("%5.4x", 10);
+printf("\n");
+printf("%5.0s is a string", "this");
 	return (0);
 }

@@ -6,67 +6,73 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/21 19:39:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 21:12:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_count(char c, t_env *e)
+void	put_char_to_buf(char c, t_env *e)
 {
-	ft_putchar(c);
-	e->count++;
+	char	*str_c;
+
+	if (!(str_c = ft_memalloc(sizeof(char) * 2)))
+		malloc_error();
+	str_c[0] = c;
+	str_c[1] = '\0';
+	e->buf = ft_strjoin(e->buf, str_c);
 }
 
-void	ft_putstr_count(char *str, t_env *e)
+void	put_str_to_buf(char *str, t_env *e, int size, char *type)
 {
-	while (*str)
+	char	*precise_str;
+
+	if (ft_strcmp(type, "nbr") == 0 && e->precision > size && e->precision > 0)
 	{
-		ft_putchar_count(*str, e);
-		str++;
+		precise_str = ft_memalloc(sizeof(char) * e->precision + 1);
+		ft_memcpy(precise_str, str, e->precision);
+		precise_str[e->precision] = '\0';
 	}
-}
-
-void	ft_putnbr_count(int nbr, t_env *e)
-{
-	int nbr_c;
-
-	nbr_c = nbr;
-	if (nbr < 0)
-		e->count++;
-	while (nbr_c / 10)
+	else if (ft_strcmp(type, "str") == 0 && e->precision
+			< size && e->precision > 0)
 	{
-		nbr_c /= 10;
-		e->count++;
+		precise_str = ft_memalloc(sizeof(char) * e->precision + 1);
+		ft_memcpy(precise_str, str, e->precision);
+		precise_str[e->precision] = '\0';
 	}
-	e->count++;
-	ft_putnbr(nbr);
+	else
+		precise_str = ft_strdup(str);
+	e->buf = ft_strjoin(e->buf, precise_str);
 }
 
-void	ft_putoffset_precision_count(t_env *e, int arg_size)
+void	put_nbr_to_buf(int nbr, t_env *e)
 {
-	int i;
+	e->buf = ft_strjoin(e->buf, ft_itoa(nbr));
+}
 
-	i = 0;
+void	put_offset_precision_to_buf(t_env *e, int arg_size)
+{
+	char	*offset;
+	char	*prec;
+
 	if (e->offset < 0)
 		e->offset *= -1;
-	if (e->precision > arg_size && e->offset > e->precision)
-		e->offset -= e->precision;
-	else
-		e->offset -= arg_size;
-	while (i < e->offset)
+	e->offset -= (e->precision > arg_size && e->offset > e->precision)
+		? e->precision : arg_size;
+	if (e->offset > 0)
 	{
-		ft_putchar_count(' ', e);
-		i++;
+		if (!(offset = ft_memalloc(sizeof(char) * e->offset + 1)))
+			malloc_error();
+		ft_memset(offset, ' ', e->offset);
+		e->buf = ft_strjoin(e->buf, offset);
 	}
 	if (e->precision > arg_size)
 	{
-		i = 0;
-		while (i < e->precision - arg_size)
-		{
-			ft_putchar_count('0', e);
-			i++;
-		}
+		if (!(prec = ft_memalloc(sizeof(char) * e->precision - arg_size + 1)))
+			malloc_error();
+		ft_memset(prec, '0', e->precision - arg_size);
+		prec[e->precision - arg_size] = '\0';
+		e->buf = ft_strjoin(e->buf, prec);
 	}
 	e->offset = 0;
 }

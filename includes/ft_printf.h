@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/21 18:46:35 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 19:36:55 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_type
 
 typedef struct	s_env
 {
+	char			*buf;
 	char			*str;
 	int				i;
 	int				count;
@@ -79,17 +80,17 @@ void	arg_error(void);
 ** ---------------------------------- Put --------------------------------------
 */
 
-void	ft_putchar_count(char c, t_env *e);
-void	ft_putstr_count(char *str, t_env *e);
-void	ft_putnbr_count(int nbr, t_env *e);
-void	ft_putoffset_precision_count(t_env *e, int arg_size);
+void	put_char_to_buf(char c, t_env *e);
+void	put_str_to_buf(char *str, t_env *e, int size, char *type);
+void	put_nbr_to_buf(int nbr, t_env *e);
+void	put_offset_precision_to_buf(t_env *e, int arg_size);
 
 /*
 ** -------------------------- Conversion Selector ------------------------------
 */
 
+void	parse_after_percent(t_env *e, va_list arg);
 void	select_conversion(t_env *e, va_list arg);
-void	fill_space(t_env *e);
 
 /*
 ** -------------------------- String Conversion --------------------------------
@@ -110,5 +111,13 @@ int		get_nb_digit(t_env *e, char *type, int base);
 */
 
 char	*base_converter(t_env *e, int base, int is_caps, char *type);
+
+/*
+** -------------------------------- Flag ---------------------------------------
+*/
+
+void	select_conversion_uint(t_env *e, va_list arg);
+void	select_conversion_long(t_env *e, va_list arg);
+void	select_conversion_short(t_env *e, va_list arg);
 
 #endif

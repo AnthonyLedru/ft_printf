@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 11:00:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/21 19:21:06 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 19:38:00 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	double_conversion(t_env *e, va_list arg)
 	while (arg_cpy /= 10)
 		nb_digit++;
 	if (e->offset > 0)
-		ft_putoffset_precision_count(e, nb_digit + 1);
-	ft_putnbr_count(next_arg, e);
+		put_offset_precision_to_buf(e, nb_digit + 1);
+	put_nbr_to_buf(next_arg, e);
 	if (e->offset < 0)
-		ft_putoffset_precision_count(e, nb_digit + 1);
+		put_offset_precision_to_buf(e, nb_digit + 1);
 }
 
 void	hexa_conversion(t_env *e, va_list arg, int is_caps, char *type)
@@ -75,11 +75,11 @@ void	hexa_conversion(t_env *e, va_list arg, int is_caps, char *type)
 		e->type->uj = va_arg(arg, uintmax_t);
 	nb_digit = get_nb_digit(e, type, 16);
 	if (e->offset >= 0)
-		ft_putoffset_precision_count(e, nb_digit);
+		put_offset_precision_to_buf(e, nb_digit);
 	if (is_caps == 1)
-		ft_putstr_count(base_converter(e, 16, 1, type), e);
+		put_str_to_buf(base_converter(e, 16, 1, type), e, nb_digit, "nbr");
 	else
-		ft_putstr_count(base_converter(e, 16, 0, type), e);
+		put_str_to_buf(base_converter(e, 16, 0, type), e, nb_digit, "nbr");
 	if (e->offset < 0)
-		ft_putoffset_precision_count(e, nb_digit);
+		put_offset_precision_to_buf(e, nb_digit);
 }

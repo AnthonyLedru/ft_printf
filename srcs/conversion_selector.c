@@ -6,71 +6,36 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/21 18:47:07 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/22 17:01:52 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_space(t_env *e)
+void	parse_after_percent(t_env *e, va_list arg)
 {
 	while (e->str[e->i] == ' ')
 		e->i++;
+	get_offset(e->i, e);
+	get_precision(e->i, e);
+	while (e->str[e->i] == ' ')
+		e->i++;
+	select_conversion(e, arg);
 }
 
-void	put_percent(t_env *e)
+void	put_percent_to_buf(t_env *e)
 {
 	if (e->offset > 0)
-		ft_putoffset_precision_count(e, 1);
-	ft_putchar_count('%', e);
+		put_offset_precision_to_buf(e, 1);
+	put_char_to_buf('%', e);
 	if (e->offset < 0)
-		ft_putoffset_precision_count(e, 1);
-}
-
-void	select_conversion_long(t_env *e, va_list arg)
-{
-	e->i++;
-	if (e->str[e->i] == 'l')
-	{
-		e->i++;
-		if (e->str[e->i] == 'X')
-			hexa_conversion(e, arg, 1, "ll");
-		if (e->str[e->i] == 'x')
-			hexa_conversion(e, arg, 0, "ll");
-	}
-	else
-	{
-		if (e->str[e->i] == 'X')
-			hexa_conversion(e, arg, 1, "ul");
-		if (e->str[e->i] == 'x')
-			hexa_conversion(e, arg, 0, "ul");
-	}
-}
-
-void	select_conversion_short(t_env *e, va_list arg)
-{
-	e->i++;
-	if (e->str[e->i] == 'h')
-	{
-		e->i++;
-		if (e->str[e->i] == 'X')
-			hexa_conversion(e, arg, 1, "hh");
-		if (e->str[e->i] == 'x')
-			hexa_conversion(e, arg, 0, "hh");
-	}
-	else
-	{
-		if (e->str[e->i] == 'X')
-			hexa_conversion(e, arg, 1, "uh");
-		if (e->str[e->i] == 'x')
-			hexa_conversion(e, arg, 0, "uh");
-	}
+		put_offset_precision_to_buf(e, 1);
 }
 
 void	select_conversion(t_env *e, va_list arg)
 {
 	if (e->str[e->i] == '%')
-		put_percent(e);
+		put_percent_to_buf(e);
 	if (e->str[e->i] == 's')
 		string_conversion(e, arg);
 	if (e->str[e->i] == 'd')
@@ -84,11 +49,5 @@ void	select_conversion(t_env *e, va_list arg)
 	if (e->str[e->i] == 'h')
 		select_conversion_short(e, arg);
 	if (e->str[e->i] == 'j')
-	{
-		e->i++;
-		if (e->str[e->i] == 'X')
-			hexa_conversion(e, arg, 1, "uj");
-		if (e->str[e->i] == 'x')
-			hexa_conversion(e, arg, 0, "uj");
-	}
+		select_conversion_uint(e, arg);
 }
