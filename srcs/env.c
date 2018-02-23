@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 16:30:31 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 17:41:16 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_env	*create_env(char *str)
 	e->buf = "";
 	e->str = str;
 	e->i = 0;
-	if (!(e->flag = ft_memalloc(sizeof(t_flag))))
-		malloc_error();
 	return (e);
 }
 

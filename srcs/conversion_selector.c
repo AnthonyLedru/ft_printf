@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 17:11:08 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 18:17:00 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,31 @@ void	put_percent_to_buf(t_env *e)
 		put_offset_precision_to_buf(e, 1);
 }
 
-void	select_conversion_without_flag(t_env *e)
+void	get_arg_cast(t_env *e, va_list arg)
 {
 	if (e->str[e->i] == 'd')
-		double_conversion(e);
+		e->nbr = (int)va_arg(arg, int);
 	if (e->str[e->i] == 'X')
-		hexa_conversion(e, 1);
+		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'x')
-		hexa_conversion(e, 0);
+		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'o')
-		octal_conversion(e);
+		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'l')
+		if (e->str[e->i + 1] != 'l')
+			e->nbr = (unsigned long)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'd')
+		e->nbr = (unsigned short int)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'h')
+		if (e->str[e->i + 1] != 'h' && e->str[e->i + 1] != 'd')
+			e->nbr = (unsigned short int)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'j')
+		e->nbr = (uintmax_t)va_arg(arg, unsigned long long int);
 }
 
 void	select_conversion(t_env *e, va_list arg)
 {
+	get_arg_cast(e, arg);
 	if (e->str[e->i] == '%')
 		put_percent_to_buf(e);
 	if (e->str[e->i] == 's')
@@ -53,34 +64,13 @@ void	select_conversion(t_env *e, va_list arg)
 	if (e->str[e->i] == 'c')
 		char_conversion(e, arg);
 	if (e->str[e->i] == 'd')
-	{
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 		select_conversion_without_flag(e);
-	}
 	if (e->str[e->i] == 'X')
-	{
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 		select_conversion_without_flag(e);
-	}
 	if (e->str[e->i] == 'x')
-	{
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 		select_conversion_without_flag(e);
-	}
 	if (e->str[e->i] == 'o')
-	{
-	
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 		select_conversion_without_flag(e);
-	}
-	if (e->str[e->i] == 'l')
-		if (e->str[e->i + 1] != 'l')
-			e->nbr = (unsigned long)va_arg(arg, unsigned long long int);
-	if (e->str[e->i] == 'h')
-		if (e->str[e->i + 1] != 'h')
-			e->nbr = (unsigned short int)va_arg(arg, unsigned long long int);
-	if (e->str[e->i] == 'j')
-		e->nbr = (uintmax_t)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'l' || e->str[e->i] == 'h' || e->str[e->i] == 'j')
-		select_conversion_flag(e, arg);
+		select_conversion_with_flag(e, arg);
 }

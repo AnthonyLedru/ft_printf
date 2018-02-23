@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 09:25:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 16:30:10 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 17:40:33 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*base_converter(t_env *e, int is_caps)
 
 	char_ref = is_caps == 1 ? 55 : 87;
 	nb_digit = get_nb_digit(e, e->base);
-	/*if (e->flag->i == 1)
-		return (ft_itoa(e->type->i));*/
 	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1)))
 		return (NULL);
 	res[nb_digit--] = '\0';

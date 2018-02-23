@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 16:29:10 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 17:49:08 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@
 /*
 ** --------------------------------- Struct ------------------------------------
 */
-
-
-typedef struct s_flag
-{
-	int i;
-	int	ui;
-	int ul;
-	int ll;
-	int uh;
-	int hh;
-	int uj;
-}				t_flag;
 
 typedef struct	s_env
 {
@@ -116,9 +104,10 @@ void	hexa_conversion(t_env *e, int is_caps);
 char	*base_converter(t_env *e, int is_caps);
 
 /*
-** -------------------------------- Flag ---------------------------------------
+** ----------------------------- Conversion ------------------------------------
 */
 
-void	select_conversion_flag(t_env *e, va_list arg);
+void	select_conversion_with_flag(t_env *e, va_list arg);
+void	select_conversion_without_flag(t_env *e);
 
 #endif
