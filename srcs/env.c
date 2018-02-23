@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 21:21:34 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 16:30:31 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_env	*create_env(char *str)
 	e->buf = "";
 	e->str = str;
 	e->i = 0;
-	e->count = 0;
-	if (!(e->type = ft_memalloc(sizeof(t_type))))
+	if (!(e->flag = ft_memalloc(sizeof(t_flag))))
 		malloc_error();
 	return (e);
 }
@@ -65,7 +64,7 @@ void	get_precision(int init_index, t_env *e)
 		e->i++;
 	while (ft_isdigit(e->str[e->i]))
 		e->i++;
-	if (e->i - init_index <= 1)
+	if (e->i - init_index == 0)
 		return ;
 	if (e->str[init_index] == '.')
 		init_index++;
@@ -74,23 +73,9 @@ void	get_precision(int init_index, t_env *e)
 	max = e->i;
 	e->i = e->i - (e->i - init_index);
 	while (e->i < max)
-	{
-		num[i] = e->str[e->i];
-		e->i++;
-		i++;
-	}
+		num[i++] = e->str[e->i++];
 	num[i] = '\0';
 	e->precision = ft_atoi(num);
 	if (e->precision == 0)
 		e->is_precision_specified = 1;
-}
-
-void	init_type_cpy(t_env *e)
-{
-	e->type->ui_cpy = e->type->ui;
-	e->type->ul_cpy = e->type->ul;
-	e->type->ll_cpy = e->type->ll;
-	e->type->uh_cpy = e->type->uh;
-	e->type->hh_cpy = e->type->hh;
-	e->type->uj_cpy = e->type->uj;
 }

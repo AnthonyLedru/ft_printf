@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 21:17:01 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 16:29:10 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,30 @@
 ** --------------------------------- Struct ------------------------------------
 */
 
-typedef struct	s_type
+
+typedef struct s_flag
 {
-	unsigned int	ui;
-	unsigned int	ui_cpy;
-	unsigned long	ul;
-	unsigned long	ul_cpy;
-	unsigned long long	ll;
-	unsigned long long	ll_cpy;
-	unsigned short int	uh;
-	unsigned short int	uh_cpy;
-	unsigned char	hh;
-	unsigned char	hh_cpy;
-	uintmax_t	uj;
-	uintmax_t	uj_cpy;
-
-
-}				t_type;
+	int i;
+	int	ui;
+	int ul;
+	int ll;
+	int uh;
+	int hh;
+	int uj;
+}				t_flag;
 
 typedef struct	s_env
 {
 	char			*buf;
 	char			*str;
 	int				i;
-	int				count;
+	unsigned long long nbr;
 	int				offset;
 	int				precision;
 	int				is_precision_specified;
-	struct s_type	*type;
+	int				base;
+	int				undefined_char_count;
+	struct s_flag	*flag;
 }				t_env;
 
 /*
@@ -68,7 +64,6 @@ int		ft_printf(const char *str, ...);
 t_env	*create_env(char *str);
 void	get_offset(int init_index, t_env *e);
 void	get_precision(int init_index, t_env *e);
-void	init_type_cpy(t_env *e);
 
 /*
 ** --------------------------------- Error -------------------------------------
@@ -100,25 +95,30 @@ void	select_conversion(t_env *e, va_list arg);
 void	string_conversion(t_env *e, va_list arg);
 
 /*
+** --------------------------- Char Conversion ---------------------------------
+*/
+
+void	char_conversion(t_env *e, va_list arg);
+
+/*
 ** -------------------------- Number Conversion --------------------------------
 */
 
-void	double_conversion(t_env *e, va_list arg);
-void	hexa_conversion(t_env *e, va_list arg, int is_caps, char *type);
-int		get_nb_digit(t_env *e, char *type, int base);
+int		get_nb_digit(t_env *e, int base);
+void	double_conversion(t_env *e);
+void	octal_conversion(t_env *e);
+void	hexa_conversion(t_env *e, int is_caps);
 
 /*
 ** --------------------------- Base Converter ----------------------------------
 */
 
-char	*base_converter(t_env *e, int base, int is_caps, char *type);
+char	*base_converter(t_env *e, int is_caps);
 
 /*
 ** -------------------------------- Flag ---------------------------------------
 */
 
-void	select_conversion_uint(t_env *e, va_list arg);
-void	select_conversion_long(t_env *e, va_list arg);
-void	select_conversion_short(t_env *e, va_list arg);
+void	select_conversion_flag(t_env *e, va_list arg);
 
 #endif

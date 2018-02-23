@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/22 21:21:57 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/23 15:53:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ void	put_str_to_buf(char *str, t_env *e, int size, char *type)
 {
 	char	*precise_str;
 
-	if (ft_strcmp(type, "nbr") == 0 && e->precision > size && e->precision > 0)
-	{
-		precise_str = ft_memalloc(sizeof(char) * e->precision + 1);
-		ft_memcpy(precise_str, str, e->precision);
-		precise_str[e->precision] = '\0';
-	}
-	else if (ft_strcmp(type, "str") == 0 && e->precision
+	if (ft_strcmp(type, "str") == 0 && e->precision
 			< size && e->precision > 0 && e->is_precision_specified == 0)
 	{
 		precise_str = ft_memalloc(sizeof(char) * e->precision + 1);

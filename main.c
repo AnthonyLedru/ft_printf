@@ -3,17 +3,15 @@
 
 int main()
 {
-ft_printf("%5.0s is a string", "");
+/*ft_printf(" %d", 42);
 ft_printf("\n");
-ft_printf("%5.4x", 10);
+ft_printf(" %s", "42");
 ft_printf("\n");
-ft_printf("%5.0s is a string", "this");
+printf("% d", 42);
+printf("\n");
+printf(" %s", "42");*/
+ft_printf("%d", -1);
 ft_printf("\n");
-printf("\n");
-printf("%5.0s is a string", "");
-printf("\n");
-printf("%5.4x", 10);
-printf("\n");
-printf("%5.0s is a string", "this");
+printf("%d", -1);
 	return (0);
 }

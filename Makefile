@@ -28,6 +28,7 @@ SOURCES := \
 		conversion_selector.c \
 		string_conversion.c \
 		number_conversion.c \
+		char_conversion.c \
 		base_converter.c \
 		flag.c \
 
