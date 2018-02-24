@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 17:49:08 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/24 13:46:11 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_env
 	char			*buf;
 	char			*str;
 	int				i;
-	unsigned long long nbr;
+	intmax_t		nbr;
 	int				offset;
 	int				precision;
 	int				is_precision_specified;

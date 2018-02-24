@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 18:17:00 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/24 10:54:03 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,18 @@ void	get_arg_cast(t_env *e, va_list arg)
 		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'o')
 		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'j')
+		e->nbr = (uintmax_t)va_arg(arg, unsigned long long int);
+	if (e->str[e->i] == 'z')
+		e->nbr = (size_t)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'l')
 		if (e->str[e->i + 1] != 'l')
-			e->nbr = (unsigned long)va_arg(arg, unsigned long long int);
+			e->nbr = (unsigned long int)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'd')
 		e->nbr = (unsigned short int)va_arg(arg, unsigned long long int);
 	if (e->str[e->i] == 'h')
 		if (e->str[e->i + 1] != 'h' && e->str[e->i + 1] != 'd')
 			e->nbr = (unsigned short int)va_arg(arg, unsigned long long int);
-	if (e->str[e->i] == 'j')
-		e->nbr = (uintmax_t)va_arg(arg, unsigned long long int);
 }
 
 void	select_conversion(t_env *e, va_list arg)
@@ -71,6 +73,7 @@ void	select_conversion(t_env *e, va_list arg)
 		select_conversion_without_flag(e);
 	if (e->str[e->i] == 'o')
 		select_conversion_without_flag(e);
-	if (e->str[e->i] == 'l' || e->str[e->i] == 'h' || e->str[e->i] == 'j')
+	if (e->str[e->i] == 'l' || e->str[e->i] == 'h' || e->str[e->i] == 'j'
+			|| e->str[e->i] == 'z')
 		select_conversion_with_flag(e, arg);
 }
