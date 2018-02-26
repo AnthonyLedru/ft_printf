@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 17:40:03 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/26 15:18:10 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ void	put_str_to_buf(char *str, t_env *e, int size, char *type)
 	e->buf = ft_strjoin(e->buf, precise_str);
 }
 
-void	put_nbr_to_buf(int nbr, t_env *e)
-{
-	e->buf = ft_strjoin(e->buf, ft_itoa(nbr));
-}
-
 void	put_offset_precision_to_buf(t_env *e, int arg_size)
 {
 	char	*offset;
@@ -53,6 +48,8 @@ void	put_offset_precision_to_buf(t_env *e, int arg_size)
 		e->offset *= -1;
 	e->offset -= (e->precision > arg_size && e->offset > e->precision)
 		? e->precision : arg_size;
+	if (e->sharp > 0)
+		e->offset -= e->sharp;
 	if (e->offset > 0)
 	{
 		if (!(offset = ft_memalloc(sizeof(char) * e->offset + 1)))

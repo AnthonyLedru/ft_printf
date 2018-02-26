@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:46:07 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/23 14:06:55 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/26 09:51:50 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_printf(const char *str, ...)
 		parse_after_percent(e, arg);
 		e->i++;
 	}
-	write(1, e->buf, ft_strlen(e->buf) + e->undefined_char_count);
+	write(1, e->buf, ft_strlen(e->buf));
 	va_end(arg);
-	return (ft_strlen(e->buf) + e->undefined_char_count);
+	return (ft_strlen(e->buf) + e->count_before_buf_reset);
 }

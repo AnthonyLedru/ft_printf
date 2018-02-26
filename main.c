@@ -3,12 +3,9 @@
 
 int main()
 {
-/*ft_printf("%hd", 32768);
-ft_printf("\n");*/
-ft_printf("%hd", -10);
+ft_printf("@moulitest: %5.x %5.0x", 0, 0);
 ft_printf("\n");
-/*printf("%hd", 32768);
-printf("\n");*/
-printf("%hd", -10);
+printf("@moulitest: %5.x %5.x", 0, 0);
+printf("\n");
 	return (0);
 }

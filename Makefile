@@ -25,6 +25,7 @@ SOURCES := \
 		error.c \
 		env.c \
 		put.c \
+		parser.c \
 		conversion_selector.c \
 		string_conversion.c \
 		number_conversion.c \
@@ -85,8 +86,9 @@ printf: $(OBJECTS)
 	@make -C libft/ -s
 	@printf "\n$(SILENT_COLOR)Compiling binary...$(NO_COLOR)"
 	@$(CC) -g -fsanitize=address -w libft/libft.a $(SOURCES) main.c $(INCLUDE_FOLDERS)
-	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
-	./a.out | cat -e
+	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n"
+	@printf "$(OK_COLOR)Result with main.c : $(NO_COLOR)\n"
+	@./a.out | cat -e
 
 
 

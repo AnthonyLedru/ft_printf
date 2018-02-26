@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 16:59:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/24 13:29:41 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/26 14:44:56 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	select_conversion_without_flag(t_env *e)
 {
-	if (e->str[e->i] == 'd')
-		double_conversion(e);
+	if (e->str[e->i] == 'u' || e->str[e->i] == 'U' || e->str[e->i] == 'd')
+		int_conversion(e);
 	if (e->str[e->i] == 'X')
-		hexa_conversion(e, 1);
+	{
+		e->caps = 1;
+		hexa_conversion(e);
+	}
 	if (e->str[e->i] == 'x')
-		hexa_conversion(e, 0);
+		hexa_conversion(e);
 	if (e->str[e->i] == 'o')
 		octal_conversion(e);
 }
@@ -31,7 +34,7 @@ void	select_conversion_with_flag(t_env *e, va_list arg)
 		e->nbr = (unsigned long long int)va_arg(arg, unsigned long long int);
 		e->i++;
 	}
-	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'h')
+	else if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'h')
 	{
 		e->nbr = (signed char)va_arg(arg, unsigned long long int);
 		e->i++;
