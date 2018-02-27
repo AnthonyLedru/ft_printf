@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/26 10:04:39 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/27 11:01:25 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ t_env	*create_env(char *str)
 	e->str = str;
 	e->i = 0;
 	return (e);
+}
+
+void	resign_offset_precision(t_env *e)
+{
+	if (e->offset > 0 && e->minus_offset_precision == 1)
+	{
+		e->offset = -e->offset;
+		e->minus_offset_precision = 0;
+	}
+	if (e->precision > 0 && e->minus_offset_precision == 1)
+	{
+		e->precision = -e->precision;
+		e->minus_offset_precision = 0;
+	}
 }
 
 void	get_offset(int init_index, t_env *e)
@@ -49,6 +63,7 @@ void	get_offset(int init_index, t_env *e)
 		num[i] = '\0';
 		e->offset = ft_atoi(num);
 	}
+	resign_offset_precision(e);
 }
 
 void	get_precision(int init_index, t_env *e)
@@ -76,4 +91,5 @@ void	get_precision(int init_index, t_env *e)
 	e->precision = ft_atoi(num);
 	if (e->precision == 0)
 		e->is_precision_specified = 1;
+	resign_offset_precision(e);
 }

@@ -3,9 +3,9 @@
 
 int main()
 {
-ft_printf("@moulitest: %5.x %5.0x", 0, 0);
+ft_printf("%-10x\n", 42);
+ft_printf("%+u", 4294967295);
 ft_printf("\n");
-printf("@moulitest: %5.x %5.x", 0, 0);
-printf("\n");
+printf("%+u", 4294967295);
 	return (0);
 }
