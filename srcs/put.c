@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 10:28:16 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/27 11:52:49 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void	put_offset_precision_to_buf(t_env *e, int arg_size)
 			malloc_error();
 		ft_memset(prec, '0', e->precision - arg_size);
 		prec[e->precision - arg_size] = '\0';
+		if (e->plus)
+			e->buf = ft_strjoin(e->buf, "+");
+		if (e->plus_before_precision)
+			e->buf = ft_strjoin(e->buf, "+");
 		e->buf = ft_strjoin(e->buf, prec);
 	}
 	e->offset = 0;

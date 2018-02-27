@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 11:01:25 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/27 11:48:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ void	get_precision(int init_index, t_env *e)
 	int		max;
 
 	i = 0;
+	if (e->str[e->i] == '+')
+	{
+		e->i++;
+		e->plus_before_precision = 1;
+	}
 	if (e->str[e->i] == '.')
 		e->i++;
 	while (ft_isdigit(e->str[e->i]))
@@ -89,6 +94,8 @@ void	get_precision(int init_index, t_env *e)
 		num[i++] = e->str[e->i++];
 	num[i] = '\0';
 	e->precision = ft_atoi(num);
+	if (e->plus_before_precision)
+		e->precision--;
 	if (e->precision == 0)
 		e->is_precision_specified = 1;
 	resign_offset_precision(e);

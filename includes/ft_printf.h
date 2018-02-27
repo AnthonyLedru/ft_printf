@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 09:47:28 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/27 11:48:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_env
 	int			sharp;
 	int			caps;
 	int			plus;
+	int			plus_before_precision;
 	int			minus;
 	int			space;
 	int			minus_offset_precision;
