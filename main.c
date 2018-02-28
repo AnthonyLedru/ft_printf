@@ -3,10 +3,8 @@
 
 int main()
 {
-ft_printf("%5d\n", -42);
-ft_printf("%lu\n", -42);
-ft_printf("%+u\n", 4294967295);
-printf("%+u\n", 4294967295);
-printf("%5d\n", -42);
+ft_printf("%#6.5x", 42);
+ft_printf("\n");
+printf("%#6.5x", 42);
 	return (0);
 }

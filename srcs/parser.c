@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:03:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 11:24:31 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/28 15:52:37 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,29 @@ char	next_char(t_env *e, char c)
 	return (e->str[i]);
 }
 
+int		is_not_a_converter(char c)
+{
+	if (c == 'd' || c == 'x' || c == 'X' || c == 'o' || c == 'c' ||
+		c == 'j' || c == 'z' || c == 'l' || c == 'h' || c == 'u' || c == 's')
+		return (0);
+	return (1);
+}
 void	parse_after_percent(t_env *e, va_list arg)
 {
-	fill_char(e, ' ');
-	if (e->str[e->i] == '-' && next_char(e, '-') == '#' && fill_char(e, '-'))
-		e->minus_offset_precision = 1;
-	if (fill_char(e, '#'))
-		e->sharp = 1;
-	fill_char(e, ' ');
-	while (e->str[e->i] == '+')
+	while (!ft_isdigit(e->str[e->i]) && is_not_a_converter(e->str[e->i])
+			&& e->str[e->i + 1])
 	{
-		if (is_char_a_converter_or_flag(e, e->str[e->i + 1]))
+		if (e->str[e->i] == '-')
+			e->minus = 1;
+		if (e->str[e->i] == '+')
+			e->plus = 1;
+		if (e->str[e->i] == '#')
+			e->sharp = 1;
+		if (e->str[e->i] == ' ')
 			e->plus = 1;
 		e->i++;
 	}
-	fill_char(e, ' ');
-	while (e->str[e->i] == '-' && is_char_a_converter_or_flag(e,
-				e->str[e->i + 1]))
-	{
-		e->minus = 1;
-		e->i++;
-	}
-	fill_char(e, ' ');
 	get_offset(e->i, e);
 	get_precision(e->i, e);
-	fill_char(e, ' ');
 	select_conversion(e, arg);
 }

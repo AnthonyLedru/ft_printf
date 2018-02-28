@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 11:48:45 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/28 15:12:55 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	get_offset(int init_index, t_env *e)
 	int		max;
 
 	i = 0;
-	if (e->str[e->i] == '-')
-		e->i++;
 	if (e->str[e->i] == '0')
 		while (e->str[e->i] == '0')
 			e->i++;

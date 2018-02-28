@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 09:25:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/27 11:46:45 by aledru           ###   ########.fr       */
+/*   Updated: 2018/02/28 16:00:48 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,20 @@ char	*base_converter_o(t_env *e)
 	int				nb_digit;
 	char			*res;
 	int				char_ref;
-	int				sharp_size;
 
-	sharp_size = e->sharp == 1 && e->nbr != 0 ? 1 : 0;
 	char_ref = e->caps == 1 ? 55 : 87;
 	nb_digit = get_nb_digit(e);
-	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1 + sharp_size)))
+	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1)))
 		return (NULL);
-	res[nb_digit + sharp_size] = '\0';
-	while (--nb_digit + sharp_size >= 0 + sharp_size)
+	res[nb_digit] = '\0';
+	while (--nb_digit >= 0)
 	{
 		if ((e->nbr % e->base >= 10 || e->nbr % e->base <= 15))
-			res[nb_digit + sharp_size] = char_ref + (e->nbr % e->base);
+			res[nb_digit] = char_ref + (e->nbr % e->base);
 		if (e->nbr % e->base < 10)
-			res[nb_digit + sharp_size] = e->nbr % e->base + '0';
+			res[nb_digit] = e->nbr % e->base + '0';
 		e->nbr /= e->base;
 	}
-	if (sharp_size != 0)
-		res[0] = '0';
 	return (res);
 }
 
@@ -71,26 +67,19 @@ char	*base_converter_x(t_env *e)
 	int				nb_digit;
 	char			*res;
 	int				char_ref;
-	int				sharp_size;
 
-	sharp_size = e->sharp == 2 && e->nbr != 0 ? 2 : 0;
 	char_ref = e->caps == 1 ? 55 : 87;
 	nb_digit = get_nb_digit(e);
-	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1 + sharp_size)))
+	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1)))
 		return (NULL);
-	res[nb_digit + sharp_size] = '\0';
-	while (--nb_digit + sharp_size >= 0 + sharp_size)
+	res[nb_digit] = '\0';
+	while (--nb_digit >= 0)
 	{
 		if ((e->nbr % e->base >= 10 || e->nbr % e->base <= 15))
-			res[nb_digit + sharp_size] = char_ref + (e->nbr % e->base);
+			res[nb_digit] = char_ref + (e->nbr % e->base);
 		if (e->nbr % e->base < 10)
-			res[nb_digit + sharp_size] = e->nbr % e->base + '0';
+			res[nb_digit] = e->nbr % e->base + '0';
 		e->nbr /= e->base;
-	}
-	if (sharp_size != 0)
-	{
-		res[0] = '0';
-		res[1] = e->caps == 1 ? 'X' : 'x';
 	}
 	return (res);
 }
