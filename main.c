@@ -3,8 +3,8 @@
 
 int main()
 {
-ft_printf("%#6.5x", 42);
+ft_printf("@moulitest: %.o %.0o", 0, 0);
 ft_printf("\n");
-printf("%#6.5x", 42);
+printf("@moulitest: %.o %.0o", 0, 0);
 	return (0);
 }

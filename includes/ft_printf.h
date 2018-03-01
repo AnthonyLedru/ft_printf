@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/28 17:21:40 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 16:38:37 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_env
 	int			offset;
 	int			precision;
 	int			is_precision_specified;
+	int			dot;
 	int			base;
 	int			count_before_buf_reset;
 	int			sharp;
@@ -53,6 +54,7 @@ int				ft_printf(const char *str, ...);
 */
 
 t_env			*create_env(char *str);
+void			reset_var(t_env *e);
 void			get_offset(int init_index, t_env *e);
 void			get_precision(int init_index, t_env *e);
 
@@ -68,9 +70,10 @@ void			arg_error(void);
 */
 
 void			put_char_to_buf(char c, t_env *e);
-void			put_str_to_buf(char *str, t_env *e, int size, char *type);
+void			put_str_to_buf(char *str, t_env *e);
 void			put_nbr_to_buf(int nbr, t_env *e);
-void			put_offset_precision_to_buf(t_env *e, int arg_size);
+void			put_offset_to_buf(t_env *e);
+void			put_precision_to_buf(t_env *e, int arg_size);
 
 /*
 ** -------------------------------- Parser -------------------------------------

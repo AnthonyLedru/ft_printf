@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:03:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/28 15:52:37 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 18:06:31 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		is_not_a_converter(char c)
 }
 void	parse_after_percent(t_env *e, va_list arg)
 {
+	reset_var(e);
 	while (!ft_isdigit(e->str[e->i]) && is_not_a_converter(e->str[e->i])
 			&& e->str[e->i + 1])
 	{
@@ -73,9 +74,15 @@ void	parse_after_percent(t_env *e, va_list arg)
 			e->sharp = 1;
 		if (e->str[e->i] == ' ')
 			e->plus = 1;
+		if (e->str[e->i] == '.')
+		{
+			e->dot = 1;
+			e->is_precision_specified = 1;
+		}
 		e->i++;
 	}
-	get_offset(e->i, e);
+	if (!e->dot)
+		get_offset(e->i, e);
 	get_precision(e->i, e);
 	select_conversion(e, arg);
 }

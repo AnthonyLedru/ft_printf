@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/28 17:25:33 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 16:40:33 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,16 @@ void	put_char_to_buf(char c, t_env *e)
 	e->buf = ft_strjoin(e->buf, str_c);
 }
 
-void	put_str_to_buf(char *str, t_env *e, int size, char *type)
+void	put_str_to_buf(char *str, t_env *e)
 {
-	char	*precise_str;
-
-	if (ft_strcmp(type, "str") == 0 && e->precision
-			< size && e->precision > 0 && e->is_precision_specified == 0)
-	{
-		precise_str = ft_memalloc(sizeof(char) * e->precision + 1);
-		ft_memcpy(precise_str, str, e->precision);
-		precise_str[e->precision] = '\0';
-	}
-	else
-		precise_str = ft_strdup(str);
-	e->buf = ft_strjoin(e->buf, precise_str);
+	e->buf = ft_strjoin(e->buf, str);
 }
 
-void	put_offset_precision_to_buf(t_env *e, int arg_size)
+void	put_offset_to_buf(t_env *e)
 {
 	char	*offset;
-	char	*prec;
 
-	e->offset -= (e->precision > arg_size && e->offset > e->precision)
-		? e->precision : arg_size;
+	//e->offset -= (e->precision > arg_size) ? e->precision : arg_size;
 	if (e->offset > 0)
 	{
 		if (!(offset = ft_memalloc(sizeof(char) * e->offset + 1)))
@@ -53,6 +40,12 @@ void	put_offset_precision_to_buf(t_env *e, int arg_size)
 		ft_memset(offset, ' ', e->offset);
 		e->buf = ft_strjoin(e->buf, offset);
 	}
+}
+
+void	put_precision_to_buf(t_env *e, int arg_size)
+{
+	char	*prec;
+
 	if (e->precision > arg_size)
 	{
 		if (!(prec = ft_memalloc(sizeof(char) * e->precision - arg_size + 1)))

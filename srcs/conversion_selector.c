@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/26 13:26:15 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 16:41:12 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 void	put_percent_to_buf(t_env *e)
 {
 	if (e->offset > 0)
-		put_offset_precision_to_buf(e, 1);
+	{
+		e->offset--;
+		put_offset_to_buf(e);
+		put_precision_to_buf(e, 1);
+	}
 	put_char_to_buf('%', e);
 	if (e->offset < 0)
-		put_offset_precision_to_buf(e, 1);
+	{
+		e->offset--;
+		put_offset_to_buf(e);
+		put_precision_to_buf(e, 1);
+	}
 }
 
 void	get_arg_cast(t_env *e, va_list arg)
