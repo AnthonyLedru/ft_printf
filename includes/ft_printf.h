@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 16:38:37 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 19:46:31 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,7 @@ void			hexa_conversion(t_env *e);
 */
 
 char			*base_converter_d(t_env *e);
-char			*base_converter_o(t_env *e);
-char			*base_converter_x(t_env *e);
+char			*base_converter_x_o(t_env *e);
 
 /*
 ** ----------------------------- Conversion ------------------------------------

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:03:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 18:06:31 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 19:48:55 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_after_percent(t_env *e, va_list arg)
 		if (e->str[e->i] == '#')
 			e->sharp = 1;
 		if (e->str[e->i] == ' ')
-			e->plus = 1;
+			e->space = 1;
 		if (e->str[e->i] == '.')
 		{
 			e->dot = 1;

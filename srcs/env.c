@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 18:04:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/01 18:19:01 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	get_precision(int init_index, t_env *e)
 	}
 	if (e->str[e->i] == '.')
 	{
-		e->is_precision_specified = 1;
 		e->i++;
+		e->is_precision_specified = 1;
 	}
 	while (ft_isdigit(e->str[e->i]))
 		e->i++;
