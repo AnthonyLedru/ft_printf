@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 09:25:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 20:06:35 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 17:03:16 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 char	*base_converter_d(t_env *e)
 {
-	int			is_neg;
-	int			size;
-	char		*str;
+	int			nb_digit;
+	char		*res;
 
-	if ((unsigned long)e->nbr == -9223372036854775808U)
-		return ("-9223372036854775808");
-	is_neg = 0;
-	if ((intmax_t)e->nbr < 0)
-	{
+	if ((unsigned long int)e->nbr == -9223372036854775808U)
+		return ("9223372036854775808");
+	if ((intmax_t)e->nbr < 0 && e->str[e->i] != 'u')
 		e->nbr = -e->nbr;
-		is_neg = 1;
-		e->plus = 0;
-	}
-	size = get_nb_digit(e) + is_neg;
-	if (!(str = ft_memalloc(sizeof(char) * size)))
+	nb_digit = get_nb_digit(e);
+	if (!(res = (char*)ft_memalloc(sizeof(char) * nb_digit + 1)))
 		malloc_error();
-	while (size--)
+	res[nb_digit] = '\0';
+	while (nb_digit--)
 	{
-		str[size] = e->nbr % 10 + '0';
-		e->nbr /= 10;
+		res[nb_digit] = e->nbr % e->base + '0';
+		e->nbr /= e->base;
 	}
-	str[0] = is_neg ? '-' : str[0];
-	return (str);
+	return (res);
 }
 
 char	*base_converter_x_o(t_env *e)
@@ -48,9 +42,9 @@ char	*base_converter_x_o(t_env *e)
 	char_ref = e->caps == 1 ? 55 : 87;
 	nb_digit = get_nb_digit(e);
 	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1)))
-		return (NULL);
+		malloc_error();
 	res[nb_digit] = '\0';
-	while (--nb_digit >= 0)
+	while (nb_digit--)
 	{
 		if ((e->nbr % e->base >= 10 || e->nbr % e->base <= 15))
 			res[nb_digit] = char_ref + (e->nbr % e->base);

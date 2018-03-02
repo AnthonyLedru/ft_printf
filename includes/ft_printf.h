@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 19:46:31 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 17:17:41 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_env
 	uintmax_t	nbr;
 	int			offset;
 	int			precision;
+	int			nb_digit;
 	int			is_precision_specified;
 	int			dot;
 	int			base;
@@ -40,7 +41,7 @@ typedef struct	s_env
 	int			plus_before_precision;
 	int			minus;
 	int			space;
-	int			minus_offset_precision;
+	int			zero;
 }				t_env;
 
 /*
@@ -71,7 +72,7 @@ void			arg_error(void);
 
 void			put_char_to_buf(char c, t_env *e);
 void			put_str_to_buf(char *str, t_env *e);
-void			put_nbr_to_buf(int nbr, t_env *e);
+void			put_zero_to_buf(t_env *e);
 void			put_offset_to_buf(t_env *e);
 void			put_precision_to_buf(t_env *e, int arg_size);
 

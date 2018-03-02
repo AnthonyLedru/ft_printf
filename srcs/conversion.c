@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 16:59:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/02/26 14:44:56 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 17:18:25 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	select_conversion_with_flag(t_env *e, va_list arg)
 {
 	if (e->str[e->i] == 'l' && e->str[e->i + 1] == 'l')
 	{
-		e->nbr = (unsigned long long int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned long long int)va_arg(arg, uintmax_t);
 		e->i++;
 	}
 	else if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'h')
 	{
-		e->nbr = (signed char)va_arg(arg, unsigned long long int);
+		e->nbr = (signed char)va_arg(arg, uintmax_t);
 		e->i++;
 	}
 	e->i++;

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 19:27:20 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 16:56:57 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,28 @@ void	put_percent_to_buf(t_env *e)
 void	get_arg_cast(t_env *e, va_list arg)
 {
 	if (e->str[e->i] == 'd')
-		e->nbr = (int)va_arg(arg, unsigned long long int);
+		e->nbr = (int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'u')
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'U' || (e->str[e->i] == 'h' && e->str[e->i + 1] == 'U'))
-		e->nbr = (unsigned long int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'c')
-		e->nbr = (unsigned char)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned char)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'X')
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'x')
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'o')
-		e->nbr = (unsigned int)va_arg(arg, unsigned long long int);
+		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'j')
-		e->nbr = (uintmax_t)va_arg(arg, unsigned long long int);
+		e->nbr = (uintmax_t)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'z')
-		e->nbr = (size_t)va_arg(arg, unsigned long long int);
+		e->nbr = (size_t)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'l')
 		if (e->str[e->i + 1] != 'l')
-			e->nbr = (unsigned long int)va_arg(arg, unsigned long long int);
+			e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'd')
-		e->nbr = (short int)va_arg(arg, unsigned long long int);
+		e->nbr = (short int)va_arg(arg, uintmax_t);
 }
 
 void	select_conversion(t_env *e, va_list arg)

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 11:00:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 20:08:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 17:19:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,24 @@ void	int_conversion(t_env *e)
 	nb_digit -= e->nbr == 0 && e->precision == 0 &&
 		e->is_precision_specified == 1 ? 1 : 0;
 	e->offset -= e->precision > nb_digit ? e->precision : nb_digit;
+	if (e->str[e->i] == 'u')
+		e->plus = 0;
+	if (e->plus && (intmax_t)e->nbr >= 0)
+		e->offset--;
+	if ((intmax_t)e->nbr < 0 && e->zero)
+		put_char_to_buf('-', e);
 	if ((intmax_t)e->nbr < 0)
 		e->offset--;
-	if (!e->minus)
+	if (!e->minus && !e->zero)
 		put_offset_to_buf(e);
 	if (e->plus && (intmax_t)e->nbr >= 0)
 		put_char_to_buf('+', e);
+	if ((intmax_t)e->nbr < 0 && !e->zero && e->str[e->i] != 'u')
+		put_char_to_buf('-', e);
 	if (e->str[e->i] == 'd' && (intmax_t)e->nbr > 0 && e->space && !e->plus)
 		put_char_to_buf(' ', e);
+	if (e->zero)
+		put_zero_to_buf(e);
 	put_precision_to_buf(e, nb_digit);
 	if (!(e->nbr == 0 && e->precision == 0 && e->is_precision_specified))
 		put_str_to_buf(base_converter_d(e), e);
@@ -87,11 +97,15 @@ void	hexa_conversion(t_env *e)
 		e->offset++;
 	nb_digit = get_nb_digit(e);
 	e->offset -= e->precision > nb_digit ? e->precision : nb_digit;
+	if (e->sharp && e->zero && e->caps)
+		e->buf = ft_strjoin(e->buf, "0X");
+	if (e->sharp && e->zero && !e->caps)
+		e->buf = ft_strjoin(e->buf, "0x");
 	if (!e->minus)
 		put_offset_to_buf(e);
-	if (e->sharp && e->caps && e->nbr != 0)
+	if (e->sharp && e->caps && e->nbr != 0 && e->zero == 0)
 		e->buf = ft_strjoin(e->buf, "0X");
-	if (e->sharp && !e->caps && e->nbr != 0)
+	if (e->sharp && !e->caps && e->nbr != 0 && e->zero == 0)
 		e->buf = ft_strjoin(e->buf, "0x");
 	put_precision_to_buf(e, nb_digit);
 	if (!(e->nbr == 0 && e->precision == 0 && e->is_precision_specified))

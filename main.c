@@ -3,8 +3,8 @@
 
 int main()
 {
-ft_printf("%+d", -42);
+ft_printf("%lu", -42);
 ft_printf("\n");
-printf("%+d", -42);
+printf("%lu", -42);
 	return (0);
 }

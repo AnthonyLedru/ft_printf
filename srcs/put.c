@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 20:03:11 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 15:26:53 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void	put_str_to_buf(char *str, t_env *e)
 	e->buf = ft_strjoin(e->buf, str);
 }
 
+void	put_zero_to_buf(t_env *e)
+{
+	char	*zero;
+
+	if (e->offset > 0)
+	{
+		if (!(zero = ft_memalloc(sizeof(char) * e->offset + 1)))
+			malloc_error();
+		ft_memset(zero, '0', e->offset);
+		e->buf = ft_strjoin(e->buf, zero);
+	}
+	e->offset = 0;
+}
+
 void	put_offset_to_buf(t_env *e)
 {
 	char	*offset;
@@ -36,7 +50,10 @@ void	put_offset_to_buf(t_env *e)
 	{
 		if (!(offset = ft_memalloc(sizeof(char) * e->offset + 1)))
 			malloc_error();
-		ft_memset(offset, ' ', e->offset);
+		if (e->zero == 1)
+			ft_memset(offset, '0', e->offset);
+		else
+			ft_memset(offset, ' ', e->offset);
 		e->buf = ft_strjoin(e->buf, offset);
 	}
 }

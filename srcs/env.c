@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/01 18:19:01 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 17:17:32 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	reset_var(t_env *e)
 	e->plus = 0;
 	e->minus = 0;
 	e->space = 0;
-	e->minus_offset_precision = 0;
 	e->plus_before_precision = 0;
+	e->nb_digit = 0;
 }
 
 void	get_offset(int init_index, t_env *e)
@@ -47,7 +47,10 @@ void	get_offset(int init_index, t_env *e)
 
 	i = 0;
 	if (e->str[e->i] == '0' && !e->minus)
+	{
+		e->i++;
 		return ;
+	}
 	while (ft_isdigit(e->str[e->i]))
 		e->i++;
 	if (!(num = ft_memalloc(sizeof(char) * e->i - init_index + 1)))
@@ -70,6 +73,7 @@ void	get_precision(int init_index, t_env *e)
 	if (e->str[e->i] == '+')
 	{
 		e->i++;
+		e->plus = 1;
 		e->plus_before_precision = 1;
 	}
 	if (e->str[e->i] == '.')
