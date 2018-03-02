@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 17:17:41 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 18:34:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ typedef struct	s_env
 	char		*buf;
 	char		*str;
 	int			i;
+	int			count_before_buf_reset;
 	uintmax_t	nbr;
 	int			offset;
 	int			precision;
-	int			nb_digit;
 	int			is_precision_specified;
+	int			plus_before_precision;
+	int			nb_digit;
 	int			dot;
 	int			base;
-	int			count_before_buf_reset;
 	int			sharp;
 	int			caps;
 	int			plus;
-	int			plus_before_precision;
 	int			minus;
 	int			space;
 	int			zero;
@@ -56,8 +56,15 @@ int				ft_printf(const char *str, ...);
 
 t_env			*create_env(char *str);
 void			reset_var(t_env *e);
-void			get_offset(int init_index, t_env *e);
-void			get_precision(int init_index, t_env *e);
+
+/*
+** ------------------------------ Env Setters ----------------------------------
+*/
+
+void			set_nb_digit(t_env *e);
+void			set_base(t_env *e);
+void			set_offset(int init_index, t_env *e);
+void			set_precision(int init_index, t_env *e);
 
 /*
 ** --------------------------------- Error -------------------------------------
@@ -104,7 +111,6 @@ void			char_conversion(t_env *e);
 ** -------------------------- Number Conversion --------------------------------
 */
 
-int				get_nb_digit(t_env *e);
 void			int_conversion(t_env *e);
 void			octal_conversion(t_env *e);
 void			hexa_conversion(t_env *e);
@@ -121,6 +127,12 @@ char			*base_converter_x_o(t_env *e);
 */
 
 void			select_conversion_with_flag(t_env *e, va_list arg);
+
+/*
+** --------------------------------- Cast --------------------------------------
+*/
+
+void			cast_arg(t_env *e, va_list arg);
 void			select_conversion_without_flag(t_env *e);
 
 #endif

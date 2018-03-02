@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 09:25:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 17:03:16 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 18:21:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*base_converter_d(t_env *e)
 		return ("9223372036854775808");
 	if ((intmax_t)e->nbr < 0 && e->str[e->i] != 'u')
 		e->nbr = -e->nbr;
-	nb_digit = get_nb_digit(e);
+	set_nb_digit(e);
+	nb_digit = e->nb_digit;
 	if (!(res = (char*)ft_memalloc(sizeof(char) * nb_digit + 1)))
 		malloc_error();
 	res[nb_digit] = '\0';
@@ -40,7 +41,8 @@ char	*base_converter_x_o(t_env *e)
 	int				char_ref;
 
 	char_ref = e->caps == 1 ? 55 : 87;
-	nb_digit = get_nb_digit(e);
+	set_nb_digit(e);
+	nb_digit = e->nb_digit;
 	if (!(res = (char*)malloc(sizeof(char) * nb_digit + 1)))
 		malloc_error();
 	res[nb_digit] = '\0';

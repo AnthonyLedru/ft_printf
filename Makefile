@@ -24,14 +24,15 @@ SOURCES := \
 		ft_printf.c \
 		error.c \
 		env.c \
+		env_setters.c \
 		put.c \
 		parser.c \
+		cast.c \
 		conversion_selector.c \
 		string_conversion.c \
 		number_conversion.c \
 		char_conversion.c \
 		base_converter.c \
-		conversion.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 

@@ -3,8 +3,8 @@
 
 int main()
 {
-ft_printf("%lu", -42);
+ft_printf("@moulitest: %3.5d", 100);
 ft_printf("\n");
-printf("%lu", -42);
+printf("@moulitest: %03.5d", 100);
 	return (0);
 }

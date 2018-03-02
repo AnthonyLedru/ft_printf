@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 16:56:57 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 18:21:57 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,22 @@ void	put_percent_to_buf(t_env *e)
 		put_offset_to_buf(e);
 }
 
-void	get_arg_cast(t_env *e, va_list arg)
+void	select_number_conversion(t_env *e)
 {
-	if (e->str[e->i] == 'd')
-		e->nbr = (int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'u')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'U' || (e->str[e->i] == 'h' && e->str[e->i + 1] == 'U'))
-		e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'c')
-		e->nbr = (unsigned char)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'X')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'x')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
+	set_base(e);
+	set_nb_digit(e);
+	e->caps = e->str[e->i] == 'X' ? 1 : 0;
+	if (e->str[e->i] == 'u' || e->str[e->i] == 'U' || e->str[e->i] == 'd')
+		int_conversion(e);
+	if (e->str[e->i] == 'X' || e->str[e->i] == 'x')
+		hexa_conversion(e);
 	if (e->str[e->i] == 'o')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'j')
-		e->nbr = (uintmax_t)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'z')
-		e->nbr = (size_t)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'l')
-		if (e->str[e->i + 1] != 'l')
-			e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'd')
-		e->nbr = (short int)va_arg(arg, uintmax_t);
+		octal_conversion(e);
 }
 
 void	select_conversion(t_env *e, va_list arg)
 {
-	get_arg_cast(e, arg);
+	cast_arg(e, arg);
 	if (e->str[e->i] == '%')
 		put_percent_to_buf(e);
 	if (e->str[e->i] == 's')
@@ -59,16 +45,16 @@ void	select_conversion(t_env *e, va_list arg)
 	if (e->str[e->i] == 'c')
 		char_conversion(e);
 	if (e->str[e->i] == 'd')
-		select_conversion_without_flag(e);
+		select_number_conversion(e);
 	if (e->str[e->i] == 'u' || e->str[e->i] == 'U')
-		select_conversion_without_flag(e);
+		select_number_conversion(e);
 	if (e->str[e->i] == 'X')
-		select_conversion_without_flag(e);
+		select_number_conversion(e);
 	if (e->str[e->i] == 'x')
-		select_conversion_without_flag(e);
+		select_number_conversion(e);
 	if (e->str[e->i] == 'o')
-		select_conversion_without_flag(e);
+		select_number_conversion(e);
 	if (e->str[e->i] == 'l' || e->str[e->i] == 'h' || e->str[e->i] == 'j'
 			|| e->str[e->i] == 'z')
-		select_conversion_with_flag(e, arg);
+		select_number_conversion(e);
 }
