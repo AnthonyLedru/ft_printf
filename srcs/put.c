@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 15:26:53 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/02 19:43:14 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	put_precision_to_buf(t_env *e, int arg_size)
 		if (!(prec = ft_memalloc(sizeof(char) * e->precision - arg_size + 1)))
 			malloc_error();
 		ft_memset(prec, '0', e->precision - arg_size);
-		prec[e->precision - arg_size] = '\0';
 		e->buf = ft_strjoin(e->buf, prec);
 	}
 }

@@ -27,7 +27,7 @@ SOURCES := \
 		env_setters.c \
 		put.c \
 		parser.c \
-		cast.c \
+		arg_cast.c \
 		conversion_selector.c \
 		string_conversion.c \
 		number_conversion.c \
