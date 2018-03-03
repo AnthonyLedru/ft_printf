@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 19:39:41 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 19:39:43 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/03 18:35:56 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	cast_arg_flag(t_env *e, va_list arg)
 {
+	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'U')
+		e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'l' && e->str[e->i + 1] != 'l')
 		e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'h' && e->str[e->i + 1] == 'd')
@@ -33,24 +35,23 @@ void	cast_arg_flag(t_env *e, va_list arg)
 
 void	cast_arg(t_env *e, va_list arg)
 {
-	if (e->str[e->i] == 'd')
-		e->nbr = (int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'u')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'U' || (e->str[e->i] == 'h' && e->str[e->i + 1] == 'U'))
+	if (e->str[e->i] == 'U' || e->str[e->i] == 'D')
 		e->nbr = (unsigned long int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'c')
-		e->nbr = (unsigned char)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'X')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'x')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
-	if (e->str[e->i] == 'o')
-		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
+	if (e->str[e->i] == 'C')
+		e->nbr = (wchar_t)va_arg(arg, uintmax_t);
+	if (e->str[e->i] == 'd' || e->str[e->i] == 'i')
+		e->nbr = (int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'j')
 		e->nbr = (uintmax_t)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'z')
 		e->nbr = (size_t)va_arg(arg, uintmax_t);
+	if (e->str[e->i] == 'p')
+		e->nbr = (unsigned long long int)va_arg(arg, uintmax_t);
+	if (e->str[e->i] == 'c')
+		e->nbr = (unsigned char)va_arg(arg, uintmax_t);
+	if (e->str[e->i] == 'u' || e->str[e->i] == 'X' || e->str[e->i] == 'x' ||
+			e->str[e->i] == 'o')
+		e->nbr = (unsigned int)va_arg(arg, uintmax_t);
 	if (e->str[e->i] == 'h' || e->str[e->i] == 'l' || e->str[e->i] == 'z' ||
 			e->str[e->i] == 'j')
 		cast_arg_flag(e, arg);

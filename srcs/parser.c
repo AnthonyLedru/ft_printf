@@ -6,24 +6,32 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:03:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 19:09:37 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/03 18:45:53 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_not_a_converter(char c)
+int		is_a_pre_flag(char c)
 {
-	if (c == 'd' || c == 'x' || c == 'X' || c == 'o' || c == 'c' ||
-		c == 'j' || c == 'z' || c == 'l' || c == 'h' || c == 'u' || c == 's')
-		return (0);
-	return (1);
+	if (c == '#' || c == '0' || c == '-' || c == ' ' || c == '+' || c == '.')
+		return (1);
+	return (0);
+}
+
+int		is_a_flag(char c)
+{
+	if (c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' || c == 'i' ||
+		c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X' ||
+		c == 'c' || c == 'C' || c == '.' || c == '%' || c == 'h' || c == 'l' ||
+		c == 'j' || c == 'z' || ft_isdigit(c))
+		return (1);
+	return (0);
 }
 
 void	get_flags_before_converter(t_env *e)
 {
-	while (!(e->str[e->i] >= '1' && e->str[e->i] <= '9')
-			&& is_not_a_converter(e->str[e->i]) && e->str[e->i + 1])
+	while (is_a_pre_flag(e->str[e->i]))
 	{
 		if (e->str[e->i] == '#')
 			e->sharp = 1;
@@ -50,6 +58,11 @@ void	parse_after_percent(t_env *e, va_list arg)
 {
 	reset_var(e);
 	get_flags_before_converter(e);
+	if (!is_a_flag(e->str[e->i]))
+	{
+		e->i--;
+		return ;
+	}
 	if (e->plus == 1 && e->space == 1)
 		e->space = 0;
 	if (e->zero == 1 && e->minus == 1)

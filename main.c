@@ -3,8 +3,9 @@
 
 int main()
 {
-ft_printf("@moulitest: %3.5d", 100);
+//ft_printf("%c");
+ft_printf("% i", 42);
 ft_printf("\n");
-printf("@moulitest: %03.5d", 100);
+printf("% i", 42);
 	return (0);
 }

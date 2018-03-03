@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:13:47 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 19:38:18 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/03 18:46:27 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	set_base(t_env *e)
 {
-	if (e->str[e->i] == 'u' || e->str[e->i] == 'U' || e->str[e->i] == 'd')
+	if (e->str[e->i] == 'u' || e->str[e->i] == 'U' || e->str[e->i] == 'd' ||
+			e->str[e->i] == 'D' || e->str[e->i] == 'i')
 		e->base = 10;
-	if (e->str[e->i] == 'X' || e->str[e->i] == 'x')
+	if (e->str[e->i] == 'X' || e->str[e->i] == 'x' || e->str[e->i] == 'p')
 		e->base = 16;
 	if (e->str[e->i] == 'o')
 		e->base = 8;

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 11:00:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 18:49:09 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/03 18:48:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	int_conversion(t_env *e)
 		put_char_to_buf('+', e);
 	if ((intmax_t)e->nbr < 0 && !e->zero && e->str[e->i] != 'u')
 		put_char_to_buf('-', e);
-	if (e->str[e->i] == 'd' && (intmax_t)e->nbr > 0 && e->space && !e->plus)
+	if ((e->str[e->i] == 'd' || e->str[e->i] == 'i')
+			&& (intmax_t)e->nbr > 0 && e->space && !e->plus)
 		put_char_to_buf(' ', e);
 	if (e->zero)
 		put_zero_to_buf(e);
@@ -58,7 +59,7 @@ void	octal_conversion(t_env *e)
 
 void	hexa_conversion(t_env *e)
 {
-	if (e->sharp && e->nbr != 0)
+	if (e->sharp && (e->nbr != 0 || e->str[e->i] == 'p'))
 	{
 		e->sharp = 2;
 		e->offset -= 2;
@@ -73,9 +74,9 @@ void	hexa_conversion(t_env *e)
 		e->buf = ft_strjoin(e->buf, "0x");
 	if (!e->minus)
 		put_offset_to_buf(e);
-	if (e->sharp && e->caps && e->nbr != 0 && e->zero == 0)
+	if (e->sharp && e->caps && !e->zero && (e->nbr || e->str[e->i] == 'p'))
 		e->buf = ft_strjoin(e->buf, "0X");
-	if (e->sharp && !e->caps && e->nbr != 0 && e->zero == 0)
+	if (e->sharp && !e->caps && !e->zero && (e->nbr || e->str[e->i] == 'p'))
 		e->buf = ft_strjoin(e->buf, "0x");
 	put_precision_to_buf(e, e->nb_digit);
 	if (!(e->nbr == 0 && e->precision == 0 && e->is_precision_specified))
