@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 18:34:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/05 17:10:49 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
-
+# include <wchar.h>
 # include <stdio.h>
 
 /*
@@ -106,6 +106,7 @@ void			string_conversion(t_env *e, va_list arg);
 */
 
 void			char_conversion(t_env *e);
+void			unicode_conversion(t_env *e);
 
 /*
 ** -------------------------- Number Conversion --------------------------------

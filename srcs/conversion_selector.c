@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/03 18:45:05 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/05 16:46:41 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	select_conversion(t_env *e, va_list arg)
 		put_percent_to_buf(e);
 	if (e->str[e->i] == 's' || e->str[e->i] == 'S')
 		string_conversion(e, arg);
-	if (e->str[e->i] == 'c' || e->str[e->i] == 'C')
+	if (e->str[e->i] == 'c')
 		char_conversion(e);
+	if (e->str[e->i] == 'C')
+		unicode_conversion(e);
 	if (e->str[e->i] == 'd' || e->str[e->i] == 'D' ||
 		e->str[e->i] == 'u' || e->str[e->i] == 'U' ||
 		e->str[e->i] == 'X' || e->str[e->i] == 'x' ||
