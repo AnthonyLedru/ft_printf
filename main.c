@@ -6,12 +6,17 @@
 int main()
 {
 //setlocale(LC_ALL, "");
+setlocale(LC_ALL, "en_US.UTF-8");
 
 //ft_printf("%C", 4660);
 //ft_printf("%c");
 //ft_printf("\n");
-//printf("%lc", 0xc3a0);
-setlocale(LC_ALL, "");
-printf("%lc\n", (wint_t)536);
-	return (0);
+ft_printf("%C", 'c');
+ft_printf("\n");
+printf("%C", 'c');
+/*for(int i = 65536; i < 524287; i++)
+{
+	printf("%d  ", i);
+	printf("%C\n", i);
+}*/
 }
