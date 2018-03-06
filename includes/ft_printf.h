@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/06 20:17:02 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/06 20:27:17 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void			select_conversion(t_env *e, va_list arg);
 */
 
 void			string_conversion(t_env *e, va_list arg);
+void			string_unicode_conversion(t_env *e, va_list arg);
 
 /*
 ** --------------------------- Char Conversion ---------------------------------
