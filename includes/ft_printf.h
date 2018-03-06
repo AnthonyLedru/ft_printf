@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/05 17:10:49 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/06 20:17:02 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct	s_env
 	int			minus;
 	int			space;
 	int			zero;
+	int			is_unicode;
+	int			unicode_error;
+	int			first_char_pos;
+	int			percent_pos;
 }				t_env;
 
 /*
@@ -106,7 +110,7 @@ void			string_conversion(t_env *e, va_list arg);
 */
 
 void			char_conversion(t_env *e);
-void			unicode_conversion(t_env *e);
+void			unicode_conversion_setup(t_env *e);
 
 /*
 ** -------------------------- Number Conversion --------------------------------
@@ -120,7 +124,7 @@ void			hexa_conversion(t_env *e);
 ** --------------------------- Base Converter ----------------------------------
 */
 
-char			*base_converter_d(t_env *e);
+char			*base_converter_d_u(t_env *e);
 char			*base_converter_x_o(t_env *e);
 
 /*

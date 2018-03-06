@@ -6,20 +6,20 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 09:25:18 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/02 18:21:34 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/06 13:18:23 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-char	*base_converter_d(t_env *e)
+char	*base_converter_d_u(t_env *e)
 {
 	int			nb_digit;
 	char		*res;
 
 	if ((unsigned long int)e->nbr == -9223372036854775808U)
 		return ("9223372036854775808");
-	if ((intmax_t)e->nbr < 0 && e->str[e->i] != 'u')
+	if ((intmax_t)e->nbr < 0 && e->str[e->i] != 'u' && e->str[e->i] != 'U')
 		e->nbr = -e->nbr;
 	set_nb_digit(e);
 	nb_digit = e->nb_digit;
