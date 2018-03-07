@@ -33,6 +33,7 @@ SOURCES := \
 		number_conversion.c \
 		char_conversion.c \
 		base_converter.c \
+		unicode.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 

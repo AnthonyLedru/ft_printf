@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:34:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/06 20:17:51 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/07 19:07:04 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		set_unicode_offset(t_env *e)
+static void		set_char_unicode_offset(t_env *e)
 {
 	if ((e->nbr > 127 && e->nbr <= 2047))
 		e->offset -= 2;
@@ -22,7 +22,7 @@ static void		set_unicode_offset(t_env *e)
 		e->offset -= 4;
 }
 
-static int		get_unicode_error(t_env *e)
+static  int		get_char_unicode_error(t_env *e)
 {
 	if ((e->nbr >= 55296 && e->nbr <= 57343))
 		e->unicode_error = 1;
@@ -45,30 +45,6 @@ static int		get_unicode_error(t_env *e)
 	return (0);
 }
 
-static void		unicode_conversion(t_env *e)
-{
-	if (e->nbr <= 127)
-		char_conversion(e);
-	else if (e->nbr <= 2047)
-	{
-		put_char_to_buf((e->nbr >> 6 & 31) + 192 & 2047, e);
-		put_char_to_buf((e->nbr & 63) + 128 & 2047, e);
-	}
-	else if (e->nbr <= 65535)
-	{
-		put_char_to_buf((e->nbr >> 12 & 15) + 224 & 65535, e);
-		put_char_to_buf((e->nbr >> 6 & 63) + 128 & 65535, e);
-		put_char_to_buf((e->nbr & 63) + 128 & 65535, e);
-	}
-	else if (e->nbr <= 1114111)
-	{
-		put_char_to_buf((e->nbr >> 18 & 7) + 240 & 1114111, e);
-		put_char_to_buf((e->nbr >> 12 & 63) + 128 & 1114111, e);
-		put_char_to_buf((e->nbr >> 6 & 63) + 128 & 1114111, e);
-		put_char_to_buf((e->nbr & 63) + 128 & 1114111, e);
-	}
-}
-
 void			char_conversion(t_env *e)
 {
 	e->offset--;
@@ -87,11 +63,11 @@ void			char_conversion(t_env *e)
 		put_offset_to_buf(e);
 }
 
-void			unicode_conversion_setup(t_env *e)
+void			char_unicode_conversion(t_env *e)
 {
-	if (get_unicode_error(e) == 1)
+	if (get_char_unicode_error(e) == 1)
 		return ;
-	set_unicode_offset(e);
+	set_char_unicode_offset(e);
 	if (!e->minus && e->nbr > 127)
 		put_offset_to_buf(e);
 	unicode_conversion(e);

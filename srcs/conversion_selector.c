@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:01:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/06 20:27:19 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/07 17:19:03 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	select_conversion(t_env *e, va_list arg)
 	cast_arg(e, arg);
 	if (e->str[e->i] == '%')
 		put_percent_to_buf(e);
-	if (e->str[e->i] == 's')
+	if (e->str[e->i] == 's' && !e->is_unicode)
 		string_conversion(e, arg);
-	if (e->str[e->i] == 'S')
+	if (e->str[e->i] == 'S' || (e->str[e->i] == 's' && e->is_unicode))
 		string_unicode_conversion(e, arg);
 	if (e->str[e->i] == 'c' && !e->is_unicode)
 		char_conversion(e);
 	if (e->str[e->i] == 'C' || (e->is_unicode && e->str[e->i] == 'c'))
-		unicode_conversion_setup(e);
+		char_unicode_conversion(e);
 	if (e->str[e->i] == 'd' || e->str[e->i] == 'D' ||
 		e->str[e->i] == 'u' || e->str[e->i] == 'U' ||
 		e->str[e->i] == 'X' || e->str[e->i] == 'x' ||

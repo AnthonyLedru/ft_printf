@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 19:39:41 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/06 20:25:20 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/07 16:41:43 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void		cast_arg_l_ll(t_env *e, va_list arg)
 		e->nbr = (wchar_t)va_arg(arg, uintmax_t);
 		e->is_unicode = 1;
 	}
+	else if (e->str[e->i] == 's')
+		e->is_unicode = 1;
 }
 
 static void		cast_arg_z_j(t_env *e, va_list arg)
