@@ -13,8 +13,8 @@ int main()
 	s[1] = 0x3abc;
 	s[2] = 0x81000;
 	s[3] = '\0';
-	ft_printf("%10ls", s);
+	ft_printf("%-10ls", NULL);
 	ft_printf("\n");
-	printf("%10ls", s);
+	printf("%-10ls", NULL);
 	//printf("%llllllllllS", "ss");
 }

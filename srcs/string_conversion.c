@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:02:46 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/07 20:24:17 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/08 00:02:55 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,34 +110,27 @@ int		get_number_of_unicode_to_display(t_env *e, wchar_t *next_arg)
 void	string_unicode_conversion(t_env *e, va_list arg)
 {
 	wchar_t *next_arg;
-	char	*null_str;
 	int		nb_unicode_to_display;
-	int		i;
 
-	i = 0;
-	null_str = NULL;
 	next_arg = va_arg(arg, wchar_t*);
 	nb_unicode_to_display = get_number_of_unicode_to_display(e, next_arg);
-	if (!next_arg)
-		null_str = "(null)";
-	else if (get_string_unicode_error(e, next_arg) == 1)
+	e->offset -= !next_arg ? -6 : 0;
+	if (next_arg && get_string_unicode_error(e, next_arg) == 1)
 		return ;
 	if (!e->minus)
 		put_offset_to_buf(e);
-	if (null_str)
-		put_str_to_buf(null_str, e);
+	if (!next_arg)
+		put_str_to_buf("(null)", e);
 	else
-		while (i < nb_unicode_to_display)
+		while (nb_unicode_to_display--)
 		{
-			e->nbr = next_arg[i];
+			e->nbr = *next_arg++;
+			e->unicode_error = e->nbr <= 255 && MB_CUR_MAX < 2 ?
+				0 : e->unicode_error;
 			if (e->nbr <= 255 && MB_CUR_MAX < 2)
-			{
-				e->unicode_error = 0;
 				char_conversion(e);
-			}
 			else
 				unicode_conversion(e);
-			i++;
 		}
 	if (e->minus)
 		put_offset_to_buf(e);

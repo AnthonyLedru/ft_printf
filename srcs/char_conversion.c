@@ -6,21 +6,11 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:34:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/07 19:07:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/07 23:38:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void		set_char_unicode_offset(t_env *e)
-{
-	if ((e->nbr > 127 && e->nbr <= 2047))
-		e->offset -= 2;
-	if (e->nbr > 2047 && e->nbr <= 65535)
-		e->offset -= 3;
-	if (e->nbr > 65535 && e->nbr <= 1114111)
-		e->offset -= 4;
-}
 
 static  int		get_char_unicode_error(t_env *e)
 {
@@ -67,7 +57,12 @@ void			char_unicode_conversion(t_env *e)
 {
 	if (get_char_unicode_error(e) == 1)
 		return ;
-	set_char_unicode_offset(e);
+	if ((e->nbr > 127 && e->nbr <= 2047))
+		e->offset -= 2;
+	if (e->nbr > 2047 && e->nbr <= 65535)
+		e->offset -= 3;
+	if (e->nbr > 65535 && e->nbr <= 1114111)
+		e->offset -= 4;
 	if (!e->minus && e->nbr > 127)
 		put_offset_to_buf(e);
 	unicode_conversion(e);

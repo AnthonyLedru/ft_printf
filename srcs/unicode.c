@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 17:16:58 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/07 18:13:30 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/07 23:36:24 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,23 @@ int				get_unicode_size(wchar_t unicode)
 
 void			unicode_conversion(t_env *e)
 {
-	if (e->nbr <= 127)
+	int	unicode_size;
+
+	unicode_size = get_unicode_size(e->nbr);
+	if (unicode_size == 1)
 		char_conversion(e);
-	else if (e->nbr <= 2047)
+	if (unicode_size == 2)
 	{
 		put_char_to_buf((e->nbr >> 6 & 31) + 192 & 2047, e);
 		put_char_to_buf((e->nbr & 63) + 128 & 2047, e);
 	}
-	else if (e->nbr <= 65535)
+	if (unicode_size == 3)
 	{
 		put_char_to_buf((e->nbr >> 12 & 15) + 224 & 65535, e);
 		put_char_to_buf((e->nbr >> 6 & 63) + 128 & 65535, e);
 		put_char_to_buf((e->nbr & 63) + 128 & 65535, e);
 	}
-	else if (e->nbr <= 1114111)
+	if (unicode_size == 4)
 	{
 		put_char_to_buf((e->nbr >> 18 & 7) + 240 & 1114111, e);
 		put_char_to_buf((e->nbr >> 12 & 63) + 128 & 1114111, e);
