@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 17:16:58 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/07 23:36:24 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/08 13:37:29 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int				get_unicode_size(wchar_t unicode)
 	return (0);
 }
 
-void			unicode_conversion(t_env *e)
+void			unicode_conversion(t_env *e, int put_offset)
 {
 	int	unicode_size;
 
 	unicode_size = get_unicode_size(e->nbr);
 	if (unicode_size == 1)
-		char_conversion(e);
+		char_conversion(e, put_offset);
 	if (unicode_size == 2)
 	{
 		put_char_to_buf((e->nbr >> 6 & 31) + 192 & 2047, e);

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:13:47 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/06 13:03:20 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/08 19:23:19 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ void	set_nb_digit(t_env *e)
 
 	nbr_cp = e->nbr;
 	nb_digit = 0;
-	if ((intmax_t)nbr_cp < 0 && e->str[e->i] == 'd')
+	if ((intmax_t)nbr_cp < 0 && (e->str[e->i] == 'd' || e->str[e->i] == 'i'))
 		nbr_cp = -nbr_cp;
 	while (nbr_cp /= e->base)
 		nb_digit++;
 	nb_digit -= e->nbr == 0 && e->precision == 0 &&
-		e->is_precision_specified == 1 && e->str[e->i] != 'x' ? 1 : 0;
+				e->is_precision_specified == 1 &&
+				e->str[e->i] != 'x' && e->str[e->i] != 'X' &&
+				e->str[e->i] != 'o' && e->str[e->i] != 'O'
+				? 1 : 0;
 	e->nb_digit = nb_digit + 1;
 }
 

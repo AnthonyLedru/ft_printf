@@ -1,20 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/08 21:04:43 by aledru            #+#    #+#             */
+/*   Updated: 2018/03/08 21:37:29 by aledru           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "includes/ft_printf.h"
 #include <wchar.h>
 #include <locale.h>
 #include <limits.h>
 
-int main()
+int	main(void)
 {
-	wchar_t s[4];
-
 	setlocale(LC_ALL, "");
-	s[0] = 0x53;
-	s[1] = 0x3abc;
-	s[2] = 0x81000;
-	s[3] = '\0';
-	ft_printf("%-10ls", NULL);
+	/*ft_printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
 	ft_printf("\n");
-	printf("%-10ls", NULL);
-	//printf("%llllllllllS", "ss");
+	printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");*/
 }

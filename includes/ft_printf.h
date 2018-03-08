@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/07 17:39:58 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/08 21:22:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void			put_precision_to_buf(t_env *e, int arg_size);
 */
 
 void			parse_after_percent(t_env *e, va_list arg);
+int				is_a_flag(char c);
 
 /*
 ** -------------------------- Conversion Selector ------------------------------
@@ -110,14 +111,14 @@ void			string_unicode_conversion(t_env *e, va_list arg);
 ** --------------------------- Char Conversion ---------------------------------
 */
 
-void			char_conversion(t_env *e);
+void			char_conversion(t_env *e, int put_offset);
 void			char_unicode_conversion(t_env *e);
 
 /*
 ** ------------------------------- Unicode -------------------------------------
 */
 
-void			unicode_conversion(t_env *e);
+void			unicode_conversion(t_env *e, int put_offset);
 int				get_unicode_size(wchar_t unicode);
 
 /*
