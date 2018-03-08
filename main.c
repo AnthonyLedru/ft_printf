@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 21:04:43 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 21:37:29 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/08 23:37:05 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 int	main(void)
 {
-	setlocale(LC_ALL, "");
-	/*ft_printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
+	//setlocale(LC_ALL, "");
+	ft_printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
 	ft_printf("\n");
-	printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");*/
+	printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
 }
