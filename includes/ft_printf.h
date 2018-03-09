@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 15:57:30 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 16:58:03 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_env
 	int			first_char_pos;
 	int			percent_pos;
 	int			size;
+	int			fd;
 }				t_env;
 
 /*
@@ -54,12 +55,15 @@ typedef struct	s_env
 */
 
 int				ft_printf(const char *str, ...);
+int				ft_dprintf(int fd, const char *str, ...);
+void			remove_string_from_buf_before_unicode_error(t_env *e);
+void			put_to_buf_until_percent(t_env *e);
 
 /*
 ** ---------------------------------- Env --------------------------------------
 */
 
-t_env			*create_env(char *str);
+t_env			*create_env(char *str, int fd);
 void			reset_var(t_env *e);
 
 /*

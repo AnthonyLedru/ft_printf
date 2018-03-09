@@ -22,6 +22,7 @@ FLAGS := -Wall -Wextra -Werror
 
 SOURCES := \
 		ft_printf.c \
+		ft_dprintf.c \
 		error.c \
 		env.c \
 		env_setters.c \
