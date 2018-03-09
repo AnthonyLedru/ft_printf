@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 21:22:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 12:46:28 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void			char_unicode_conversion(t_env *e);
 */
 
 void			unicode_conversion(t_env *e, int put_offset);
-int				get_unicode_size(wchar_t unicode);
+int				get_string_unicode_size(wchar_t unicode);
 
 /*
 ** -------------------------- Number Conversion --------------------------------

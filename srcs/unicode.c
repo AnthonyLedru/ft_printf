@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 17:16:58 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 13:37:29 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 12:46:13 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				get_unicode_size(wchar_t unicode)
+int			get_string_unicode_size(wchar_t unicode)
 {
 	if (unicode <= 255)
 		return (1);
@@ -25,11 +25,24 @@ int				get_unicode_size(wchar_t unicode)
 	return (0);
 }
 
-void			unicode_conversion(t_env *e, int put_offset)
+int			get_char_unicode_size(wchar_t unicode)
+{
+	if (unicode <= 127)
+		return (1);
+	else if (unicode <= 2047)
+		return (2);
+	else if (unicode <= 65535)
+		return (3);
+	else if (unicode <= 1114111)
+		return (4);
+	return (0);
+}
+
+void		unicode_conversion(t_env *e, int put_offset)
 {
 	int	unicode_size;
 
-	unicode_size = get_unicode_size(e->nbr);
+	unicode_size = get_char_unicode_size(e->nbr);
 	if (unicode_size == 1)
 		char_conversion(e, put_offset);
 	if (unicode_size == 2)

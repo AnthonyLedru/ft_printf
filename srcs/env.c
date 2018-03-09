@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 20:59:45 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 23:34:18 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 13:13:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	reset_var(t_env *e)
 	e->space = 0;
 	e->plus_before_precision = 0;
 	e->nb_digit = 0;
+	e->is_unicode = 0;
 }

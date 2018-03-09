@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:02:46 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 21:23:37 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 13:12:47 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		get_string_unicode_error(t_env *e, wchar_t *next_arg)
 	size = 0;
 	while (next_arg[i])
 	{
-		size += get_unicode_size(next_arg[i]);
+		size += get_string_unicode_size(next_arg[i]);
 		e->nbr = next_arg[i];
 		if (get_unicode_error(e) == 1)
 		{
@@ -64,11 +64,11 @@ static int		get_number_of_unicode_to_display(t_env *e, wchar_t *next_arg)
 	size = 0;
 	while (*next_arg)
 	{
-		size += get_unicode_size(*next_arg);
+		size += get_string_unicode_size(*next_arg);
 		if ((e->precision == 0 && e->is_precision_specified == 0) ||
 				e->precision >= size)
 		{
-			e->offset -= get_unicode_size(*next_arg);
+			e->offset -= get_string_unicode_size(*next_arg);
 			nb_unicode++;
 		}
 		else

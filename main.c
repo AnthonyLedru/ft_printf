@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 21:04:43 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 23:37:05 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 13:25:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@
 
 int	main(void)
 {
-	//setlocale(LC_ALL, "");
-	ft_printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
-	ft_printf("\n");
-	printf("a%Sb%sc%S", L"ÊM-M-^Q", "42", L"ÁM-^L´");
+	setlocale(LC_ALL, "");
+	ft_printf("@main_ftprintf: %###-#0000 33...12..#0+0d", 256);
+	ft_printf("@main_ftprintf: %####0000 33..1d", 256);
+	ft_printf("@main_ftprintf: %####0000 33..1..#00d\n", 256);
+	//ft_printf("%hhld", 128); 
+	//ft_printf("%lhh", 2147483647);
+	//ft_printf("%zj", 9223372036854775807);
+	//ft_printf("%lhlz", 9223372036854775807);
+	//ft_printf("%lhl", 9223372036854775807);
+	//ft_printf("%jhd", 9223372036854775807);
+	//ft_printf("%zhd", 4294967296);
+	//ft_printf("%ll#x", 9223372036854775807);
+	//ft_printf("% hZ%"); 
+	//ft_printf("% hZ");
+	//ft_printf("% h");
 }
