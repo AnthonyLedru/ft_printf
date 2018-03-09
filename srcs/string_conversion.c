@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 10:02:46 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 13:12:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 15:32:23 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void			string_unicode_conversion(t_env *e, va_list arg)
 	if (!e->minus)
 		put_offset_to_buf(e);
 	if (!next_arg)
-		put_str_to_buf("(null)", e);
+		put_str_to_buf(ft_strdup("(null)"), e);
 	else
 		while (nb_unicode_to_display--)
 		{
@@ -127,7 +127,7 @@ void			string_conversion(t_env *e, va_list arg)
 	else
 	{
 		e->offset -= arg_size;
-		precise_str = next_arg;
+		precise_str = ft_strdup(next_arg);
 	}
 	if (!e->minus)
 		put_offset_to_buf(e);

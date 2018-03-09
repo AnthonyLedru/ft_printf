@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:13:47 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 19:23:19 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 14:04:46 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	set_offset(int init_index, t_env *e)
 		num[i++] = e->str[e->i++];
 	num[i] = '\0';
 	e->offset = ft_atoi(num);
+	ft_memdel((void*)&num);
 }
 
 void	set_precision(int init_index, t_env *e)
@@ -92,4 +93,5 @@ void	set_precision(int init_index, t_env *e)
 	e->precision = ft_atoi(num);
 	if (e->precision == 0 || e->dot == 1)
 		e->is_precision_specified = 1;
+	ft_memdel((void*)&num);
 }

@@ -6,11 +6,21 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 09:31:59 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 18:51:26 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 16:24:25 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	put_str_to_buf(char *str, t_env *e)
+{
+	char *to_free;
+
+	to_free = e->buf;
+	e->buf = ft_strjoin(e->buf, str);
+	ft_memdel((void*)&to_free);
+	ft_memdel((void*)&str);
+}
 
 void	put_char_to_buf(char c, t_env *e)
 {
@@ -20,12 +30,7 @@ void	put_char_to_buf(char c, t_env *e)
 		malloc_error();
 	str_c[0] = c;
 	str_c[1] = '\0';
-	e->buf = ft_strjoin(e->buf, str_c);
-}
-
-void	put_str_to_buf(char *str, t_env *e)
-{
-	e->buf = ft_strjoin(e->buf, str);
+	put_str_to_buf(str_c, e);
 }
 
 void	put_zero_to_buf(t_env *e)
@@ -37,7 +42,7 @@ void	put_zero_to_buf(t_env *e)
 		if (!(zero = ft_memalloc(sizeof(char) * e->offset + 1)))
 			malloc_error();
 		ft_memset(zero, '0', e->offset);
-		e->buf = ft_strjoin(e->buf, zero);
+		put_str_to_buf(zero, e);
 	}
 	e->offset = 0;
 }
@@ -54,7 +59,7 @@ void	put_offset_to_buf(t_env *e)
 			ft_memset(offset, '0', e->offset);
 		else
 			ft_memset(offset, ' ', e->offset);
-		e->buf = ft_strjoin(e->buf, offset);
+		put_str_to_buf(offset, e);
 	}
 }
 
@@ -67,6 +72,6 @@ void	put_precision_to_buf(t_env *e, int arg_size)
 		if (!(prec = ft_memalloc(sizeof(char) * e->precision - arg_size + 1)))
 			malloc_error();
 		ft_memset(prec, '0', e->precision - arg_size);
-		e->buf = ft_strjoin(e->buf, prec);
+		put_str_to_buf(prec, e);
 	}
 }

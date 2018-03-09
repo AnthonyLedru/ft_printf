@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:46:07 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 13:11:44 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 15:58:10 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static void		remove_string_from_buf_before_unicode_error(t_env *e)
 		new_buf[i] = e->buf[i];
 		i++;
 	}
-	e->buf = new_buf;
+	ft_memdel((void*)&e->buf);
+	e->buf = ft_strdup(new_buf);
+	ft_memdel((void*)&new_buf);
 }
 
 static void		put_to_buf_until_percent(t_env *e)
@@ -48,6 +50,7 @@ static void		put_to_buf_until_percent(t_env *e)
 int				ft_printf(const char *str, ...)
 {
 	va_list arg;
+	int		res;
 	t_env	*e;
 
 	va_start(arg, str);
@@ -67,6 +70,8 @@ int				ft_printf(const char *str, ...)
 		remove_string_from_buf_before_unicode_error(e);
 	write(1, e->buf, ft_strlen(e->buf));
 	va_end(arg);
-	return (e->unicode_error == 0 ?
-			ft_strlen(e->buf) + e->count_before_buf_reset : -1);
+	res = !e->unicode_error ? ft_strlen(e->buf) + e->count_before_reset : -1;
+	ft_memdel((void*)&e->buf);
+	ft_memdel((void*)&e);
+	return (res);
 }

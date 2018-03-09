@@ -6,7 +6,7 @@
 /*   By: aledru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 02:32:52 by aledru            #+#    #+#             */
-/*   Updated: 2017/11/09 02:47:46 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 16:16:46 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 
 	i = 0;
-	size = 0;
-	if (s1 == NULL || s2 == NULL)
+	size = ft_strlen(s1) + ft_strlen(s2);
+	if (!(res = ft_memalloc(sizeof(char) * size + 1)))
 		return (NULL);
-	size = ft_strlen(s1);
-	size += ft_strlen(s2);
-	if (NULL != (res = ft_strnew(size)))
+	while (*s1)
 	{
-		while (*s1)
-		{
-			res[i++] = *s1;
-			s1++;
-		}
-		while (*s2)
-		{
-			res[i++] = *s2;
-			s2++;
-		}
-		return (res);
+		res[i++] = *s1;
+		s1++;
 	}
-	return (NULL);
+	while (*s2)
+	{
+		res[i++] = *s2;
+		s2++;
+	}
+	return (res);
 }

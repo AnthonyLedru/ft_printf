@@ -82,16 +82,4 @@ fclean:
 
 re: fclean all
 
-exec: printf
-
-printf: $(OBJECTS)
-	@make -C libft/ -s
-	@printf "\n$(SILENT_COLOR)Compiling binary...$(NO_COLOR)"
-	@$(CC) -w libft/libft.a $(SOURCES) main.c $(INCLUDE_FOLDERS)
-	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n"
-	@printf "$(OK_COLOR)Result with main.c : $(NO_COLOR)\n"
-	@./a.out
-
-
-
 .PHONY: all clean fclean re header

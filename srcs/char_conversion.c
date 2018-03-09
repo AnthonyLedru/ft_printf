@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:34:56 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 21:27:06 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 15:58:27 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void			char_conversion(t_env *e, int put_offset)
 		put_offset_to_buf(e);
 	if (!e->nbr)
 	{
-		e->count_before_buf_reset += ft_strlen(e->buf) + 1;
-		e->buf = ft_strjoin(e->buf, "\0");
+		e->count_before_reset += ft_strlen(e->buf) + 1;
+		put_char_to_buf('\0', e);
 		write(1, e->buf, ft_strlen(e->buf) + 1);
 		ft_memdel((void*)&e->buf);
 		e->buf = ft_memalloc(sizeof(char));

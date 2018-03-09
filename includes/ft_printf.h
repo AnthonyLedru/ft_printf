@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 12:46:28 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 15:57:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_env
 	char		*buf;
 	char		*str;
 	int			i;
-	int			count_before_buf_reset;
+	int			count_before_reset;
 	uintmax_t	nbr;
 	int			offset;
 	int			precision;
@@ -46,6 +46,7 @@ typedef struct	s_env
 	int			unicode_error;
 	int			first_char_pos;
 	int			percent_pos;
+	int			size;
 }				t_env;
 
 /*

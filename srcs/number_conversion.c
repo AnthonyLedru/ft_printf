@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 11:00:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/08 20:05:35 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 14:52:56 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ void	hexa_conversion(t_env *e)
 		e->offset++;
 	e->offset -= e->precision > e->nb_digit ? e->precision : e->nb_digit;
 	if (e->sharp && e->zero && e->caps)
-		e->buf = ft_strjoin(e->buf, "0X");
+		put_str_to_buf(ft_strdup("0X"), e);
 	if (e->sharp && e->zero && !e->caps)
-		e->buf = ft_strjoin(e->buf, "0x");
+		put_str_to_buf(ft_strdup("0x"), e);
 	if (!e->minus)
 		put_offset_to_buf(e);
 	if (e->sharp && e->caps && !e->zero && (e->nbr || e->str[e->i] == 'p'))
-		e->buf = ft_strjoin(e->buf, "0X");
+		put_str_to_buf(ft_strdup("0X"), e);
 	if (e->sharp && !e->caps && !e->zero && (e->nbr || e->str[e->i] == 'p'))
-		e->buf = ft_strjoin(e->buf, "0x");
+		put_str_to_buf(ft_strdup("0x"), e);
 	put_precision_to_buf(e, e->nb_digit);
 	if (!(e->nbr == 0 && e->precision == 0 && e->is_precision_specified))
 		put_str_to_buf(base_converter_x_o(e), e);
