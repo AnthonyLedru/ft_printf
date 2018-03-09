@@ -6,7 +6,7 @@
 /*   By: aledru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:40:02 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 18:32:43 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 22:36:19 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int				ft_isdigit(int c);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strjoin_fr(char *s1, char *s2);
 char			*ft_itoa(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
