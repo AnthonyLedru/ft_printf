@@ -6,13 +6,13 @@
 /*   By: aledru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:40:02 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 16:22:45 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 18:32:43 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
+
 # include <stdlib.h>
 # include <unistd.h>
 

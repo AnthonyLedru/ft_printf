@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 12:16:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 16:58:03 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 22:26:57 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
 # include <wchar.h>
-# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 /*
 ** --------------------------------- Struct ------------------------------------
@@ -32,7 +33,6 @@ typedef struct	s_env
 	int			offset;
 	int			precision;
 	int			is_precision_specified;
-	int			plus_before_precision;
 	int			nb_digit;
 	int			dot;
 	int			base;
@@ -86,8 +86,8 @@ void			arg_error(void);
 ** ---------------------------------- Put --------------------------------------
 */
 
-void			put_char_to_buf(char c, t_env *e);
 void			put_str_to_buf(char *str, t_env *e);
+void			put_char_to_buf(char c, t_env *e);
 void			put_zero_to_buf(t_env *e);
 void			put_offset_to_buf(t_env *e);
 void			put_precision_to_buf(t_env *e, int arg_size);
@@ -142,16 +142,9 @@ char			*base_converter_d_u(t_env *e);
 char			*base_converter_x_o(t_env *e);
 
 /*
-** ----------------------------- Conversion ------------------------------------
-*/
-
-void			select_conversion_with_flag(t_env *e, va_list arg);
-
-/*
 ** --------------------------------- Cast --------------------------------------
 */
 
 void			cast_arg(t_env *e, va_list arg);
-void			select_conversion_without_flag(t_env *e);
 
 #endif

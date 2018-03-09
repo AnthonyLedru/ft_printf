@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:13:47 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/09 14:04:46 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/09 18:10:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	set_nb_digit(t_env *e)
 	nb_digit = 0;
 	if ((intmax_t)nbr_cp < 0 && (e->str[e->i] == 'd' || e->str[e->i] == 'i'))
 		nbr_cp = -nbr_cp;
-	while (nbr_cp /= e->base)
-		nb_digit++;
+	if ((intmax_t)nbr_cp == 0)
+		e->nb_digit = 1;
+	else
+		while (nbr_cp /= e->base)
+			nb_digit++;
 	nb_digit -= e->nbr == 0 && e->precision == 0 &&
 				e->is_precision_specified == 1 &&
 				e->str[e->i] != 'x' && e->str[e->i] != 'X' &&
@@ -73,10 +76,7 @@ void	set_precision(int init_index, t_env *e)
 	int		max;
 
 	if (e->str[e->i] == '+' && e->str[e->i++])
-	{
 		e->plus = 1;
-		e->plus_before_precision = 1;
-	}
 	if (e->str[e->i] == '.' && e->str[e->i++])
 		e->is_precision_specified = 1;
 	while (ft_isdigit(e->str[e->i]))
