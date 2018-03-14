@@ -6,7 +6,7 @@ This project is a copy of the original printf function of C langage.
 My ft_printf supports the following options:
 
 Type|
-:-:|:-:
+:-:|
 <kbd>Flags</kbd>
 <kbd>%d</kbd>
 <kbd>3</kbd>
