@@ -20,9 +20,9 @@ Conversions:
  - %c
  - %C
 
- 
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+ First Header  | Second Header
+------------- | -------------
+
  
 ## Compilation
 
