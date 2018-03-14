@@ -1,5 +1,5 @@
 # ft_printf
-This project is about to re-code original printf function from C langage.
+This project is a copy of the original printf function of C langage.
 
 ## Compilation
 
