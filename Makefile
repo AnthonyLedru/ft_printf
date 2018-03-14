@@ -35,6 +35,18 @@ SOURCES := \
 		char_conversion.c \
 		base_converter.c \
 		unicode.c \
+		libft/ft_isdigit.c \
+		libft/ft_putstr_fd.c \
+		libft/ft_putchar_fd.c \
+		libft/ft_atoi.c \
+		libft/ft_memalloc.c \
+		libft/ft_memcpy.c \
+		libft/ft_memdel.c \
+		libft/ft_memset.c \
+		libft/ft_strcpy.c \
+		libft/ft_strdup.c \
+		libft/ft_strjoin.c \
+		libft/ft_strlen.c
 
 OBJECTS := $(SOURCES:.c=.o)
 
@@ -51,8 +63,6 @@ HEADER_PRINTED := NO
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@make -C libft/ -s
-	@cp libft/libft.a ./$(NAME)
 	@printf "\n$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@ar rcs $(NAME) $(OBJECTS)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
@@ -70,17 +80,17 @@ objs/%.o: %.c
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 
 clean:
-	@make -C libft/ clean
 	@rm -rf $(OBJECTS_FOLDER)
 	@printf "$(SILENT_COLOR)ft_printf : Objects removed$(NO_COLOR)\n"
 
 fclean:
-	@make -C libft/ fclean
 	@rm -rf $(OBJECTS_FOLDER)
 	@printf "$(SILENT_COLOR)ft_printf : Objects removed$(NO_COLOR)\n"
 	@rm -f $(NAME)
 	@printf "$(SILENT_COLOR)ft_printf : Binary removed $(NO_COLOR)\n"
 
-re: fclean all
+re: 
+	@make fclean
+	@make
 
 .PHONY: all clean fclean re header
