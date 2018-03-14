@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 17:05:54 by aledru            #+#    #+#             */
-/*   Updated: 2018/03/14 17:08:29 by aledru           ###   ########.fr       */
+/*   Updated: 2018/03/14 17:55:28 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(int gc, char **av)
+int	main(void)
 {
 	ft_printf("\nThis is a ft_printf test #42\n");
 	ft_printf("   _____ ________\n");
