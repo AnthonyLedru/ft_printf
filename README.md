@@ -3,23 +3,26 @@ This project is a copy of the original printf function of C langage.
 
 ## Features
 
-My ft_printf supports the following options:
+Conversions:
 
 Type|
 :-:|
-<kbd>Flags</kbd>
+<kbd>Converter</kbd>
+<kbd>%s</kbd>
+<kbd>%S</kbd>
+<kbd>%p</kbd>
 <kbd>%d</kbd>
-<kbd>3</kbd>
-<kbd>4</kbd>
-<kbd>5</kbd>
-<kbd>6</kbd>
-<kbd>7</kbd>
-<kbd>Mouse Wheel</kbd>
-<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>
-<kbd>+</kbd> <kbd>-</kbd>
-<kbd>M</kbd>
-<kbd>ESC</kbd>
-
+<kbd>%D</kbd>
+<kbd>%i</kbd>
+<kbd>%o</kbd>
+<kbd>%O</kbd>
+<kbd>%u</kbd>
+<kbd>%U</kbd>
+<kbd>%x</kbd>
+<kbd>%X</kbd>
+<kbd>%c</kbd>
+<kbd>%C</kbd>
+ 
 ## Compilation
 
 Run `make` command to compile the libftprintf library.
