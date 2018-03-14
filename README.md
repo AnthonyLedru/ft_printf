@@ -20,8 +20,8 @@ Conversions:
  - %c
  - %C
 
- First Header  | Second Header
-------------- | -------------
+ Converters  |  %d, %s, %S, %p, %d, %D, %i, %o, %O, %u, %U, %x, %X, %c, %C
+------------- | -----------------------------------------------------------
 
  
 ## Compilation
