@@ -21,6 +21,13 @@ Conversions:
  - %C
 
  
+ ```
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+```
+ 
 ## Compilation
 
 Run `make` command to compile the libftprintf library.
