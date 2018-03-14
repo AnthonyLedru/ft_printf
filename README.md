@@ -5,9 +5,8 @@ This project is a copy of the original printf function of C langage.
 
 Conversions:
 
-Type|
+Converter|
 :-:|
-<kbd>Converter</kbd>
 <kbd>%s</kbd>
 <kbd>%S</kbd>
 <kbd>%p</kbd>
