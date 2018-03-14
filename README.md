@@ -6,21 +6,7 @@ This project is a copy of the original printf function of C langage.
 Conversions:
 
 Converter|
-:-:|
-<kbd>%s</kbd>
-<kbd>%S</kbd>
-<kbd>%p</kbd>
-<kbd>%d</kbd>
-<kbd>%D</kbd>
-<kbd>%i</kbd>
-<kbd>%o</kbd>
-<kbd>%O</kbd>
-<kbd>%u</kbd>
-<kbd>%U</kbd>
-<kbd>%x</kbd>
-<kbd>%X</kbd>
-<kbd>%c</kbd>
-<kbd>%C</kbd>
+
  
 ## Compilation
 
