@@ -4,8 +4,9 @@ This project is a copy of the original printf function of C langage.
 ## Features
 
 
- Converters  |  %d / %s / %S / %p / %d / %D / %i / %o / %O / %u / %U / %x / %X / %c / %C / %%
+ Type        | Name
 ------------ | -------------------------------------------------------------------------------
+ Converters  |  %d / %s / %S / %p / %d / %D / %i / %o / %O / %u / %U / %x / %X / %c / %C / %%
  Flags       |  # / 0 / - / +
  Modifiers   |  hh / h / l / ll / j /z
 
