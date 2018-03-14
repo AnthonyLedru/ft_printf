@@ -5,20 +5,20 @@ This project is a copy of the original printf function of C langage.
 
 My ft_printf supports the following options:
 
-Type|Name|
+Type|
 :-:|:-:
-<kbd>Flags</kbd>|Change the color to red
-<kbd>%d</kbd>|Change the color to green
-<kbd>3</kbd>|Change the color to blue
-<kbd>4</kbd>|Change the color to yellow
-<kbd>5</kbd>|Change the color to gray
-<kbd>6</kbd>|Change the color to cyan
-<kbd>7</kbd>|Change the color to purple
-<kbd>Mouse Wheel</kbd>|Zoom on fractal
-<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Move the fractal (X, Y)
-<kbd>+</kbd> <kbd>-</kbd>|Change the iteration rate
-<kbd>M</kbd>|Disable the mouse movement on Julia
-<kbd>ESC</kbd>|Quit the program
+<kbd>Flags</kbd>
+<kbd>%d</kbd>
+<kbd>3</kbd>
+<kbd>4</kbd>
+<kbd>5</kbd>
+<kbd>6</kbd>
+<kbd>7</kbd>
+<kbd>Mouse Wheel</kbd>
+<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>
+<kbd>+</kbd> <kbd>-</kbd>
+<kbd>M</kbd>
+<kbd>ESC</kbd>
 
 ## Compilation
 
