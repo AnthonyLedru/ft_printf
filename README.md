@@ -3,6 +3,7 @@ This project is a copy of the original printf function of C langage.
 
 ## Features
 
+Supports all of theses converters, flags and modifiers:
 
  Type        | Name
 ------------ | -------------------------------------------------------------------------------
