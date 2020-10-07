@@ -1,7 +1,7 @@
 # ft_printf
 This project is a copy of the original printf function of C langage.
 
-This code complies with the 42 school norm: https://github.com/AnthonyLedru/norm/blob/master/norme.pdf
+This code complies with the 42 school norm: https://github.com/AnthonyLedru/ft_printf/blob/master/norm.pdf
 
 ## Features
 
